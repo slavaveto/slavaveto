@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px; /* Размер шрифта по умолчанию */
+    line-height: 1.25; /* Высота строки по умолчанию */
+    font-family: 'Inter', Arial, sans-serif; /* Шрифт по умолчанию */
+  }
+}
+
+
+
+
+
+/* Светлая тема */
+html.light {
+  @apply bg-light-background text-light-text;
+}
+/* Тёмная тема (через класс dark) */
+html.dark {
+  @apply bg-dark-background text-dark-text;
+}
+
+/* Глобальный класс для header и footer */
+.header_bg {
+  @apply bg-headerLight/* Для светлой темы */
+}
+.dark .header_bg {
+  @apply bg-headerDark/* Для тёмной темы */
+}
+
+
+
+
+/* Стилизуем стили переключателей темы и языков*/
+div[data-slot="tabList"] {
+  gap: 4px !important; /* Устанавливаем отступы */
+  padding: 6px !important;
+  border-radius: 10px !important;
+}
+button[data-slot="tab"]{
+  padding: 0px 10px !important; /* Устанавливаем нужные отступы */
+}
+
+/* Стили для больших экранов (1024px и выше) */
+@media (min-width: 450px) {
+  div[data-slot="tabList"] {
+    gap: 4px !important; /* Увеличиваем отступы */
+    padding: 5px !important; /* Увеличиваем внутренние отступы */
+    border-radius: 10px !important; /* Увеличиваем скругление */
+  }
+  button[data-slot="tab"] {
+    padding: 0px 6px !important; /* Увеличиваем отступы для кнопок */
+  }
+}
