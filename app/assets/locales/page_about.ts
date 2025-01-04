@@ -1,14 +1,14 @@
 const uiTranslations = {
     ru: {
         translation: {
-            btn_title: "Перейти на Page_1",
+            title: "Обо мне",
 
 
         },
     },
     uk: {
         translation: {
-            btn_title: "Перейти на Page_1 UA",
+            title: "Про мене",
 
 
 

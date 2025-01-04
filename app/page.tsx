@@ -125,8 +125,26 @@ export default function Home() {
                         <Avatar/>
                         <Messengers/>
 
+                        <div className="video-container rounded-small border-default border-medium" style={{
+                            position: 'relative',
+                            paddingBottom: '56.25%',
+                            height: 0,
+                            overflow: 'hidden',
+                            maxWidth: '100%',
+                            background: '#000',
 
-                        {fetchedPages.map(({ slug, page_key, btn_type }) => (
+                        }}>
+                            <iframe
+                                src="https://www.youtube.com/watch?v=J5qxn8P6Hec&t=1959s"
+                                title="YouTube Video"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
+                            ></iframe>
+                        </div>
+
+                        {fetchedPages.map(({slug, page_key, btn_type}) => (
                             btn_type === 'image' ? (
                                 // Если btn_type === 'image', создаём ссылку в виде изображения
                                 <a
@@ -146,14 +164,14 @@ export default function Home() {
                                         //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
                                         src={main_btns(`${page_key}_btn`)} // Путь к изображению
                                         alt={`Изображение для ${page_key}`} // Альтернативный текст
-                                        className="block dark:hidden rounded-md hover:opacity-90 transition-opacity border-2 " // Стили
+                                        className="block dark:hidden rounded-small hover:opacity-90 transition-opacity border-default border-medium " // Стили
                                         style={{cursor: 'pointer'}}
                                     />
                                     <img
                                         //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
                                         src={main_btns(`${page_key}_btn_dark`)} // Путь к изображению
                                         alt={`Изображение для ${page_key}`} // Альтернативный текст
-                                        className="hidden dark:block rounded-md hover:opacity-90 transition-opacity  px-[1px]" // Стили
+                                        className="hidden dark:block rounded-small hover:opacity-90 transition-opacity -border-default -border-medium px-[1px]" // Стили
                                         style={{cursor: 'pointer'}}
                                     />
                                 </a>

@@ -7,6 +7,7 @@ const main_btnsTranslations = {
             page_tg4gt_btn_dark: "/projects/default_dark.jpg",
             page_supervision_btn: "/projects/default.jpg",
             page_supervision_btn_dark: "/projects/default_dark.jpg",
+            page_message_btn: "Написать мне сообщение",
 
 
         },
@@ -19,6 +20,7 @@ const main_btnsTranslations = {
             page_tg4gt_btn_dark: "/projects/default_ua_dark.jpg",
             page_supervision_btn: "/projects/default_ua.jpg",
             page_supervision_btn_dark: "/projects/default_ua_dark.jpg",
+            page_message_btn: "Написати мені повідомлення",
         },
 
     },

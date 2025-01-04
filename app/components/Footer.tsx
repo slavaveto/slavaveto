@@ -6,7 +6,7 @@ import LangToggle from "@/app/components/LangToggle";
 
 export default function Footer() {
     return (
-        <footer className="header_bg flex h-[60px] mt-5 items-center ">
+        <footer className="header_bg flex h-[60px] mt-[40px] items-center ">
             <div className="container flex mx-auto px-3 -justify-between justify-end items-center max-w-custom">
                 {/*<div>*/}
                 {/*    <p className="font-medium text-lg leading-4 pb-1">Вячеслав Вето</p>*/}
