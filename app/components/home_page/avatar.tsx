@@ -4,8 +4,6 @@ import {useTranslation} from 'react-i18next';
 
 export default function Avatar() {
 
-    //const { t } = useTranslation(['home', 'ui']);
-
     const { t: ui } = useTranslation('ui');
     const { t: home } = useTranslation('home');
 

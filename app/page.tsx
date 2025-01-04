@@ -10,16 +10,19 @@ import {useRouter} from "next/navigation";
 import {supabase} from '@/app/assets/supabaseClient';
 import {Button} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
-
-
-
 import Footer from "@/app/components/Footer";
+
+import {useTranslation} from 'react-i18next';
 
 let isFirstLoad = true;
 
 export default function Home() {
 
     const router = useRouter();
+
+    const { t: ui } = useTranslation('ui');
+    const { t: home } = useTranslation('home');
+    const { t: main_btns } = useTranslation('main_btns');
 
     // Состояния загрузки и данных
     const [isLoaded, setIsLoaded] = useState(false); // Управление спиннером
@@ -34,6 +37,9 @@ export default function Home() {
     }, [isLoaded]);
 
 
+    // Изменяем имя состояния, чтобы избежать конфликта
+    const [fetchedPages, setFetchedPages] = useState<{ slug: string; page_key: string }[]>([]);
+
     useEffect(() => {
         const fetchPages = async () => {
             try {
@@ -43,8 +49,7 @@ export default function Home() {
                 // Запрос к базе данных
                 const { data, error } = await supabase
                     .from('_pages')
-                    .select('slug, order, is_hidden')
-                    //.eq('page_key', 'your_page_key') // Замените 'your_page_key' на нужное значение
+                    .select('slug, page_key, order, is_hidden')
                     .order('order', { ascending: true }); // Сортировка по order
 
                 if (error) throw error;
@@ -52,8 +57,8 @@ export default function Home() {
                 // Фильтруем записи, исключая те, где is_hidden === true
                 const visiblePages = data.filter((page) => !page.is_hidden);
 
-                // Устанавливаем массив slug в состояние
-                setPages(visiblePages.map((page) => page.slug));
+                // Устанавливаем массив объектов { slug, page_key } в состояние
+                setFetchedPages(visiblePages.map(({ slug, page_key }) => ({ slug, page_key })));
             } catch (err) {
                 console.error('Ошибка загрузки страниц:', err);
             } finally {
@@ -63,6 +68,7 @@ export default function Home() {
 
         fetchPages();
     }, []);
+
 
 
     // Эффект для управления отображением спиннера
@@ -117,10 +123,10 @@ export default function Home() {
                     className="flex-grow container mx-auto px-3 max-w-custom -xs450:overflow-y-auto -xs450:max-h-[calc(100vh-74px)]">
                     <div className="flex flex-col gap-[20px] pt-6">
                         <Avatar/>
-
                         <Messengers/>
 
-                        {pages.map((slug) => (
+                        {/*{pages.map((slug) => (*/}
+                        {fetchedPages.map(({ slug, page_key }) => (
                             <Button
                                 key={slug}
                                 onPress={() => handleNavigation(`${slug}`)}
@@ -129,7 +135,7 @@ export default function Home() {
                                 variant={"faded"}
                                 radius="sm"
                             >
-                                Перейти на {slug}
+                                {main_btns(page_key)}
                             </Button>
 
                         ))}

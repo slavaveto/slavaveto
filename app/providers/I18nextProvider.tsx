@@ -6,6 +6,7 @@ import { initReactI18next } from 'react-i18next';
 
 import homeTranslations from "@/app/assets/locales/home";
 import uiTranslations from "@/app/assets/locales/ui_common";
+import main_btnsTranslations from "@/app/assets/locales/main_btns";
 
 // Поддерживаемые языки
 const supportedLanguages = ['ru', 'uk']; // Русский и Украинский
@@ -30,10 +31,12 @@ const resources = {
     ru: {
         home: homeTranslations.ru.translation,
         ui: uiTranslations.ru.translation,
+        main_btns: main_btnsTranslations.ru.translation,
     },
     uk: {
         home: homeTranslations.uk.translation,
         ui: uiTranslations.uk.translation,
+        main_btns: main_btnsTranslations.uk.translation,
     },
 };
 
