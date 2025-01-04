@@ -33,6 +33,7 @@ export default function Home() {
         }
     }, [isLoaded]);
 
+
     useEffect(() => {
         const fetchPages = async () => {
             try {
@@ -40,18 +41,29 @@ export default function Home() {
                 await new Promise((resolve) => setTimeout(resolve, 0));
 
                 // Запрос к базе данных
-                const {data, error} = await supabase.from('_pages').select('slug');
+                const { data, error } = await supabase
+                    .from('_pages')
+                    .select('slug, order, is_hidden')
+                    //.eq('page_key', 'your_page_key') // Замените 'your_page_key' на нужное значение
+                    .order('order', { ascending: true }); // Сортировка по order
+
                 if (error) throw error;
 
-                setPages(data.map((page) => page.slug));
+                // Фильтруем записи, исключая те, где is_hidden === true
+                const visiblePages = data.filter((page) => !page.is_hidden);
+
+                // Устанавливаем массив slug в состояние
+                setPages(visiblePages.map((page) => page.slug));
             } catch (err) {
                 console.error('Ошибка загрузки страниц:', err);
             } finally {
                 setPageLoaded(true); // Уведомляем, что данные загружены
             }
         };
+
         fetchPages();
     }, []);
+
 
     // Эффект для управления отображением спиннера
     useEffect(() => {
