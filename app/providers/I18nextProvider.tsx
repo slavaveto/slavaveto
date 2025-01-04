@@ -3,7 +3,7 @@
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import resources from "@/app/assets/locales"; // Импортируем переводы
+import resources from "@/app/assets/locales/home"; // Импортируем переводы
 
 // Поддерживаемые языки
 const supportedLanguages = ['ru', 'uk']; // Русский и Украинский

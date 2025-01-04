@@ -10,14 +10,22 @@ import {useRouter} from "next/navigation";
 import {supabase} from '@/app/assets/supabaseClient';
 import {Button} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
-import {useTranslation} from 'react-i18next';
+
+import { useLoadTranslations } from '@/app/assets/loadTranslations';
+
 
 import Footer from "@/app/components/Footer";
 
 let isFirstLoad = true;
 
 export default function Home() {
-    const {t} = useTranslation();
+
+
+
+
+
+
+
     const router = useRouter();
 
     // Состояния загрузки и данных
@@ -110,8 +118,7 @@ export default function Home() {
                         {pages.map((slug) => (
                             <Button
                                 key={slug}
-                                //onPress={() => router.push('/about')}
-                                onPress={() => handleNavigation(`/${slug}`)}
+                                onPress={() => handleNavigation(`${slug}`)}
                                 className="w-full text-base pt-[1px]"
                                 color="primary"
                                 variant={"faded"}
@@ -122,16 +129,6 @@ export default function Home() {
 
                         ))}
 
-                        <Button
-                            //onPress={() => router.push('/about')}
-                            onPress={() => handleNavigation('/about')}
-                            className="w-full text-base pt-[1px]"
-                            color="primary"
-                            variant={"faded"}
-                            radius="sm"
-                        >
-                            {t('btn_about')}
-                        </Button>
 
                         <LoremText paragraphs={0}/>
 
