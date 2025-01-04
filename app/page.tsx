@@ -11,7 +11,6 @@ import {supabase} from '@/app/assets/supabaseClient';
 import {Button} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
 
-import { useLoadTranslations } from '@/app/assets/loadTranslations';
 
 
 import Footer from "@/app/components/Footer";
@@ -19,12 +18,6 @@ import Footer from "@/app/components/Footer";
 let isFirstLoad = true;
 
 export default function Home() {
-
-
-
-
-
-
 
     const router = useRouter();
 
