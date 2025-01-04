@@ -19,7 +19,7 @@ export default function Avatar() {
                     style={{boxShadow: "0 0px 10px rgba(0, 0, 0, 0.2)"}}
                 />
                 <img
-                    src={`${home("title_image")}`}
+                    src={`${home("title_image_dark")}`}
                     alt="Описание изображения"
                     className="hidden dark:block w-[120px] rounded-full  border-0"
                     style={{boxShadow: "0 0px 10px rgba(0, 0, 0, 0.2)"}}

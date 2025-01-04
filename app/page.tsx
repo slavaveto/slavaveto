@@ -38,7 +38,7 @@ export default function Home() {
 
 
     // Изменяем имя состояния, чтобы избежать конфликта
-    const [fetchedPages, setFetchedPages] = useState<{ slug: string; page_key: string }[]>([]);
+    const [fetchedPages, setFetchedPages] = useState<{ slug: string; page_key: string; btn_type: string  }[]>([]);
 
     useEffect(() => {
         const fetchPages = async () => {
@@ -49,7 +49,7 @@ export default function Home() {
                 // Запрос к базе данных
                 const { data, error } = await supabase
                     .from('_pages')
-                    .select('slug, page_key, order, is_hidden')
+                    .select('slug, page_key, order, btn_type, is_hidden')
                     .order('order', { ascending: true }); // Сортировка по order
 
                 if (error) throw error;
@@ -58,7 +58,7 @@ export default function Home() {
                 const visiblePages = data.filter((page) => !page.is_hidden);
 
                 // Устанавливаем массив объектов { slug, page_key } в состояние
-                setFetchedPages(visiblePages.map(({ slug, page_key }) => ({ slug, page_key })));
+                setFetchedPages(visiblePages.map(({ slug, page_key, btn_type }) => ({ slug, page_key, btn_type })));
             } catch (err) {
                 console.error('Ошибка загрузки страниц:', err);
             } finally {
@@ -125,19 +125,53 @@ export default function Home() {
                         <Avatar/>
                         <Messengers/>
 
-                        {/*{pages.map((slug) => (*/}
-                        {fetchedPages.map(({ slug, page_key }) => (
-                            <Button
-                                key={slug}
-                                onPress={() => handleNavigation(`${slug}`)}
-                                className="w-full text-base pt-[1px]"
-                                color="primary"
-                                variant={"faded"}
-                                radius="sm"
-                            >
-                                {main_btns(page_key)}
-                            </Button>
 
+                        {fetchedPages.map(({ slug, page_key, btn_type }) => (
+                            btn_type === 'image' ? (
+                                // Если btn_type === 'image', создаём ссылку в виде изображения
+                                <a
+                                    key={slug}
+                                    onClick={(e) => {
+                                        e.preventDefault(); // Предотвращаем стандартное поведение ссылки
+                                        handleNavigation(`/${slug}`); // Вызываем fade-out и навигацию
+                                    }}
+                                    href={`/${slug}`} // Для SEO и правого клика на ссылке
+                                    style={{
+                                        cursor: 'pointer',
+                                        textDecoration: 'none',
+                                        color: 'inherit',
+                                    }}
+                                >
+                                    <img
+                                        //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
+                                        src={main_btns(`${page_key}_btn`)} // Путь к изображению
+                                        alt={`Изображение для ${page_key}`} // Альтернативный текст
+                                        className="block dark:hidden rounded-md hover:opacity-90 transition-opacity border-2 " // Стили
+                                        style={{cursor: 'pointer'}}
+                                    />
+                                    <img
+                                        //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
+                                        src={main_btns(`${page_key}_btn_dark`)} // Путь к изображению
+                                        alt={`Изображение для ${page_key}`} // Альтернативный текст
+                                        className="hidden dark:block rounded-md hover:opacity-90 transition-opacity  px-[1px]" // Стили
+                                        style={{cursor: 'pointer'}}
+                                    />
+                                </a>
+
+                            ) : (
+                                <Button
+                                    key={slug}
+                                    onPress={() => handleNavigation(`${slug}`)}
+                                    className="w-full text-base pt-[1px]"
+                                    color="primary"
+                                    variant={"faded"}
+                                    radius="sm"
+                                >
+                                    {main_btns(`${page_key}_btn`)}
+
+                                </Button>
+
+                            )
                         ))}
 
 

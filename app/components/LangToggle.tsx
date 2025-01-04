@@ -7,16 +7,18 @@ import { useEffect } from "react";
 export default function LangToggle() {
     const { i18n } = useTranslation(); // Получаем экземпляр i18next
 
+
     // Функция для смены языка
     const handleLanguageChange = (key: string) => {
         i18n.changeLanguage(key); // Меняем язык
         localStorage.setItem("language", key); // Сохраняем выбор пользователя
     };
 
+
     // Проверяем сохранённый язык при загрузке компонента
     useEffect(() => {
         const savedLanguage = localStorage.getItem("language");
-        console.log("сохраненный язык", savedLanguage);
+        //console.log("Cохраненный язык", savedLanguage);
         if (savedLanguage && savedLanguage !== i18n.language) {
             i18n.changeLanguage(savedLanguage); // Устанавливаем сохранённый язык
         }

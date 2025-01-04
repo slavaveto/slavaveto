@@ -54,8 +54,8 @@ i18n
 
 // Логируем текущий язык и язык устройства
 if (typeof window !== 'undefined') {
-    console.log(`Язык устройства: ${deviceLanguage || 'Не удалось определить'}`);
-    console.log(`Установленный язык: ${defaultLanguage}`);
+    //console.log(`Язык устройства: ${deviceLanguage || 'Не удалось определить'}`);
+    //console.log(`Установленный язык: ${defaultLanguage}`);
 }
 
 export default i18n;
