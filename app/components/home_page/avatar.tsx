@@ -11,7 +11,7 @@ export default function Avatar() {
     return (
         <>
             <div
-                className="flex flex-row items-center justify-between -xs414:justify-center -xs450:pr-6 -xs390:gap-10">
+                className="flex flex-row items-center justify-between -pr-[20px] -xs450:justify-center -xs450:pr-6 -xs390:gap-10">
                 <img
                     src={home("title_image")}
                     alt="Описание изображения"
@@ -24,8 +24,8 @@ export default function Avatar() {
                     className="hidden dark:block w-[120px] rounded-full  border-0"
                     style={{boxShadow: "0 0px 10px rgba(0, 0, 0, 0.2)"}}
                 />
-                <div>
-                    <div className="-pl-10 justify-end justify-center">
+                <div className="flex w-full justify-end -items-center -justify-center">
+                    <div className="-pl-10  ">
                         <p className="font-medium text-[26px] xs375:text-[29px] xs414:text-[30px] xs450:text-[32px] leading-5 pb-1">{home('title')}</p>
                         <p className="leading-4 text-sm italic w-full text-right -text-center pr-[5px]">{home('subtitle')} </p>
                     </div>

@@ -23,13 +23,11 @@ html.dark {
   @apply bg-dark-background text-dark-text;
 }
 
-/* Глобальный класс для header и footer */
-.header_bg {
-  @apply bg-headerLight/* Для светлой темы */
-}
-.dark .header_bg {
-  @apply bg-headerDark/* Для тёмной темы */
-}
+
+
+
+
+
 
 /* Глобальный класс для header и footer */
 .footer_bg {
@@ -43,23 +41,23 @@ html.dark {
 
 
 /* Стилизуем стили переключателей темы и языков*/
-div[data-slot="tabList"] {
+footer div[data-slot="tabList"] {
   gap: 4px !important; /* Устанавливаем отступы */
   padding: 6px !important;
   border-radius: 10px !important;
 }
-button[data-slot="tab"]{
+footer button[data-slot="tab"]{
   padding: 0px 10px !important; /* Устанавливаем нужные отступы */
 }
 
 /* Стили для больших экранов (1024px и выше) */
 @media (min-width: 450px) {
-  div[data-slot="tabList"] {
+  footer div[data-slot="tabList"] {
     gap: 4px !important; /* Увеличиваем отступы */
     padding: 5px !important; /* Увеличиваем внутренние отступы */
     border-radius: 10px !important; /* Увеличиваем скругление */
   }
-  button[data-slot="tab"] {
+  footer button[data-slot="tab"] {
     padding: 0px 6px !important; /* Увеличиваем отступы для кнопок */
   }
 }

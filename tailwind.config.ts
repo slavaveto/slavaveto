@@ -23,12 +23,12 @@ export default {
           text: '#a7adba', // Текст тёмной темы
         },
 
-
-        headerLight: '#ffffff', // Фон для светлой темы
-        headerDark: '#1e2329', // Фон для тёмной темы
-
         footerLight: '#e5e6e6', // Фон для светлой темы
         footerDark: '#16191e', // Фон для тёмной темы
+      },
+
+      fontSize: {
+        small: '16px', //
       },
 
       screens: {
@@ -40,7 +40,7 @@ export default {
 
       maxWidth: {
         'custom': '450px', // Ваша максимальная ширина
-        'xs2': '280px', // Для маленьких экранов
+        'custom2': '550px', // Ваша максимальная ширина
       },
 
     },

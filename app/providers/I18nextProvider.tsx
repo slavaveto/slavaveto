@@ -8,6 +8,8 @@ import homeTranslations from "@/app/assets/locales/home";
 import uiTranslations from "@/app/assets/locales/ui_common";
 import main_btnsTranslations from "@/app/assets/locales/main_btns";
 import aboutTranslations from "@/app/assets/locales/page_about";
+import errorTranslations from "@/app/assets/locales/page_error";
+import tg4gtTranslations from "@/app/assets/locales/page_tg4gt";
 
 // Поддерживаемые языки
 const supportedLanguages = ['ru', 'uk']; // Русский и Украинский
@@ -34,12 +36,16 @@ const resources = {
         ui: uiTranslations.ru.translation,
         main_btns: main_btnsTranslations.ru.translation,
         about: aboutTranslations.ru.translation,
+        error: errorTranslations.ru.translation,
+        tg4gt: tg4gtTranslations.ru.translation,
     },
     uk: {
         home: homeTranslations.uk.translation,
         ui: uiTranslations.uk.translation,
         main_btns: main_btnsTranslations.uk.translation,
         about: aboutTranslations.uk.translation,
+        error: errorTranslations.uk.translation,
+        tg4gt: tg4gtTranslations.uk.translation,
     },
 };
 

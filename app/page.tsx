@@ -125,7 +125,9 @@ export default function Home() {
             >
 
                 <main
-                    className="flex-grow container mx-auto px-3 max-w-custom -xs450:overflow-y-auto -xs450:max-h-[calc(100vh-74px)]">
+                    className="flex-grow container mx-auto px-3"
+                    style={{ maxWidth: '500px' }}>
+
                     <div className="flex flex-col gap-[20px] pt-6">
                         <Avatar/>
                         <Messengers/>
@@ -188,7 +190,7 @@ export default function Home() {
                     </div>
 
                 </main>
-                <Footer/>
+                <Footer width="500"/>
             </div>
 
         </>

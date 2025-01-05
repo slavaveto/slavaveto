@@ -1,16 +1,22 @@
-import Link from "next/link";
 import {supabase} from "@/app/assets/supabaseClient";
 
 import FadeWrapper from "@/app/[pages]/components/FadeWrapper";
 import Footer from "@/app/components/Footer";
 
+import { redirect } from 'next/navigation';
+
 import YouTubeEmbed from "@/app/components/YouTubeEmbed"; // Укажите путь к компоненту
 
 import LoremText from "@/app/components/LoremText";
-import {IoIosArrowBack} from "react-icons/io";
 import React from "react";
 
 import ClientTranslation from "./components/ClientTranslation"
+
+import Header from "@/app/[pages]/components/Header";
+import AboutPage from "@/app/[pages]/pages/AboutPage";
+import ErrorPage from "@/app/[pages]/pages/ErrorPage";
+import RequestPage from "@/app/[pages]/pages/RequestPage";
+import Tg4gtPage from "@/app/[pages]/pages/Tg4gtPage";
 
 export default async function Page({params}: { params: { pages: string } }) {
     const slug = params.pages;
@@ -20,71 +26,47 @@ export default async function Page({params}: { params: { pages: string } }) {
         .from('_pages') // Имя вашей таблицы
         .select('page_key') // Указываем столбец, который нам нужен
         .eq('slug', slug) // Фильтруем по slug
+        .eq('is_active', true) // Учитываем только активные записи
         .single(); // Ожидаем одну запись
 
     if (error) {
         console.error('Ошибка загрузки page_key:', error);
-        return <p>Ошибка загрузки данных.</p>;
+        redirect('/error-page');
     }
 
     const pageKey = data?.page_key;
     const page_namespace = pageKey.split('_')[1];
 
+    //console.log("page_namespace", pageKey);
+
+    const components: Record<string, React.FC<{ page_namespace: string }>> = {
+        aboutPage: AboutPage,
+        errorPage: ErrorPage,
+        requestPage: RequestPage,
+        tg4gtPage: Tg4gtPage,
+
+
+    };
+    const DynamicComponent = components[`${page_namespace}Page`];
+
+
+
+
     return (
 
         <FadeWrapper>
+            <div className="flex flex-col min-h-svh">
+                {/*{pageKey !== 'page_error' && <Header width="550" page_namespace={page_namespace}/>}*/}
 
-            <div className="header_bg opacity-90 backdrop-blur-3xl"
-                 style={{
+                <main className="flex-grow container mx-auto px-3 pt-3"
+                      style={{ maxWidth: '550px' }}>
 
-                     position: 'sticky',
-                     top: 0
-                 }}
-            >
+                    <DynamicComponent page_namespace={page_namespace}/>
 
-                <div className="container flex mx-auto px-3  items-center max-w-custom">
+                </main>
 
-                    <div className="flex flex-col ">
-
-                        <Link
-                            color="foreground"
-                            href="/"
-                            className="mt-5 mb-4 pr-1 flex flex-row items-center"
-                        >
-                            <IoIosArrowBack className="-ml-[9px]" size={26}/>
-                            {/*<p className=" mb-[1px] -font-semibold">{ui('return_home')}</p>*/}
-                            <p className=" mb-[1px] -font-semibold">
-                                <ClientTranslation phrase_key="return_home" namespace="ui"/>
-                            </p>
-
-                        </Link>
-
-                        <div className="text-2xl -ml-[1px] mb-4 text-primary -font-semibold">
-                            <ClientTranslation phrase_key="title" namespace={page_namespace}/>
-                        </div>
-                    </div>
-
-                </div>
+                    <Footer width="550"/>
             </div>
-
-
-                <div className="flex flex-col min-h-svh">
-
-
-                    <main
-                        className="flex-grow container mx-auto px-3 max-w-custom -xs450:overflow-y-auto -xs450:max-h-[calc(100vh-74px)]">
-
-                        <div className="flex flex-col ">
-
-
-                            <LoremText paragraphs={5}/>
-
-
-                        </div>
-                    </main>
-                    <Footer/>
-
-                </div>
 
 
         </FadeWrapper>
