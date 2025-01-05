@@ -31,6 +31,14 @@ html.dark {
   @apply bg-headerDark/* Для тёмной темы */
 }
 
+/* Глобальный класс для header и footer */
+.footer_bg {
+  @apply bg-footerLight/* Для светлой темы */
+}
+.dark .footer_bg {
+  @apply bg-footerDark/* Для тёмной темы */
+}
+
 
 
 

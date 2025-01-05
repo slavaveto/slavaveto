@@ -1,14 +1,14 @@
 const uiTranslations = {
     ru: {
         translation: {
-            return_to_home: "вернуться назад",
+            return_home: "вернуться на Главную",
 
 
         },
     },
     uk: {
         translation: {
-            return_to_home: "повернутися назад",
+            return_home: "повернутися на Головну",
 
 
 

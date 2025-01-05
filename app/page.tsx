@@ -12,6 +12,9 @@ import {Button} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
 import Footer from "@/app/components/Footer";
 
+import YouTubeEmbed from "@/app/components/YouTubeEmbed"; // Укажите путь к компоненту
+
+
 import {useTranslation} from 'react-i18next';
 
 let isFirstLoad = true;
@@ -44,7 +47,7 @@ export default function Home() {
         const fetchPages = async () => {
             try {
                 // Имитация минимальной задержки для спиннера
-                await new Promise((resolve) => setTimeout(resolve, 0));
+                await new Promise((resolve) => setTimeout(resolve, 10));
 
                 // Запрос к базе данных
                 const { data, error } = await supabase
@@ -79,7 +82,7 @@ export default function Home() {
                 isFirstLoad = false;
                 //console.log("Первая загрузка", isFirstLoad); //
             }
-        }, isFirstLoad ? 1000 : 50);// Минимальное время спиннера
+        }, isFirstLoad ? 1000 : 10);// Минимальное время спиннера
 
         return () => clearTimeout(timer);
     }, [pageLoaded]);
@@ -89,7 +92,9 @@ export default function Home() {
         setIsExiting(true); // Включаем fade-out
         setTimeout(() => {
             router.push(href); // Переход на новую страницу
-        }, 500); // Длительность fade-out
+            //setIsExiting(false); // Сбрасываем состояние после завершения перехода
+
+        }, 0); // Длительность fade-out
     };
 
     return (
@@ -106,7 +111,7 @@ export default function Home() {
                 style={{
                     transition: isExiting
                         ? 'opacity 300ms ease, transform 500ms ease' // Длительность для isExiting
-                        : 'opacity 500ms ease, transform 50ms ease', // Длительность для isLoaded
+                        : 'opacity 300ms ease, transform 50ms ease', // Длительность для isLoaded
                 }}
                 className={`flex flex-col min-h-svh ${
                     isExiting
@@ -125,24 +130,9 @@ export default function Home() {
                         <Avatar/>
                         <Messengers/>
 
-                        <div className="video-container rounded-small border-default border-medium" style={{
-                            position: 'relative',
-                            paddingBottom: '56.25%',
-                            height: 0,
-                            overflow: 'hidden',
-                            maxWidth: '100%',
-                            background: '#000',
 
-                        }}>
-                            <iframe
-                                src="https://www.youtube.com/watch?v=J5qxn8P6Hec&t=1959s"
-                                title="YouTube Video"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-                            ></iframe>
-                        </div>
+                            <YouTubeEmbed videoId="J5qxn8P6Hec" />
+
 
                         {fetchedPages.map(({slug, page_key, btn_type}) => (
                             btn_type === 'image' ? (
@@ -164,7 +154,7 @@ export default function Home() {
                                         //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
                                         src={main_btns(`${page_key}_btn`)} // Путь к изображению
                                         alt={`Изображение для ${page_key}`} // Альтернативный текст
-                                        className="block dark:hidden rounded-small hover:opacity-90 transition-opacity border-default border-medium " // Стили
+                                        className="block dark:hidden rounded-small hover:opacity-90 transition-opacity border-default -border-medium " // Стили
                                         style={{cursor: 'pointer'}}
                                     />
                                     <img

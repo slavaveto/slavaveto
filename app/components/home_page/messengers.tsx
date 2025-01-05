@@ -7,7 +7,7 @@ export default function Messengers() {
 
     return (
         <>
-            <div className="flex justify-center space-x-5 py-2">
+            <div className="flex justify-center space-x-5 pt-3 pb-5">
                 {/* Telegram */}
                 <a
                     href="https://t.me/@slavaveto"

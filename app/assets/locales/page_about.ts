@@ -1,4 +1,4 @@
-const uiTranslations = {
+const aboutTranslations = {
     ru: {
         translation: {
             title: "Обо мне",
@@ -17,6 +17,6 @@ const uiTranslations = {
     },
 };
 
-export default uiTranslations;
+export default aboutTranslations;
 
 

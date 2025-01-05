@@ -15,8 +15,11 @@ const FadeWrapper = ({children}: { children: React.ReactNode }) => {
     const handleNavigation = (href: string) => {
         setIsExiting(true); // Активируем fade-out
         setTimeout(() => {
+
             router.push(href); // Выполняем переход после завершения анимации
-        }, 500); // Длительность fade-out должна совпадать с CSS transition
+            //setIsExiting(false); // Сбрасываем состояние после завершения перехода
+
+        }, 300); // Длительность fade-out должна совпадать с CSS transition
     };
 
     useEffect(() => {
@@ -28,7 +31,7 @@ const FadeWrapper = ({children}: { children: React.ReactNode }) => {
         <div
             style={{
                 transition: isExiting
-                    ? 'opacity 300ms ease, transform 500ms ease' // Fade-out
+                    ? 'opacity 300ms ease, transform 300ms ease' // Fade-out
                     : 'opacity 500ms ease, transform 50ms ease', // Fade-in
             }}
             className={`flex flex-col min-h-svh ${
@@ -48,8 +51,10 @@ const FadeWrapper = ({children}: { children: React.ReactNode }) => {
 
     function handleLinkClick(event: React.MouseEvent<HTMLDivElement>) {
         const link = (event.target as HTMLElement).closest('a');
+        //console.log('Ссылка найдена:', link);
         if (link && link.href.startsWith(window.location.origin)) {
             event.preventDefault(); // Предотвращаем переход по ссылке
+            //console.log('Переход через handleNavigation:', link.href);
             handleNavigation(link.href); // Обрабатываем fade-out
         }
     }

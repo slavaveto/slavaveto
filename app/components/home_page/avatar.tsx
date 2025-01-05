@@ -11,7 +11,7 @@ export default function Avatar() {
     return (
         <>
             <div
-                className="flex flex-row items-center justify-between -xs414:justify-center -xs450:pr-6 -xs390:gap-10 ">
+                className="flex flex-row items-center justify-between -xs414:justify-center -xs450:pr-6 -xs390:gap-10">
                 <img
                     src={home("title_image")}
                     alt="Описание изображения"
