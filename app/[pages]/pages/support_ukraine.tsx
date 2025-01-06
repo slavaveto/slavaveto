@@ -9,7 +9,7 @@ import Link from "next/link";
 
 import {TbArrowBackUp} from "react-icons/tb";
 
-export default function UkrainePage({page_namespace}: { page_namespace: string }) {
+export default function SupportUkraine ({page_namespace}: { page_namespace: string }) {
 
     const {t: misc} = useTranslation('misc');
     const HtmlString = ({text}: { text: string }) => (

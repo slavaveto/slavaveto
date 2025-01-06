@@ -11,7 +11,7 @@ import {TbArrowBackUp} from "react-icons/tb";
 
 import classNames from "classnames";
 
-export default function ErrorPage({page_namespace}: { page_namespace: string }) {
+export default function Error ({page_namespace}: { page_namespace: string }) {
 
     const {t: misc} = useTranslation('misc');
 

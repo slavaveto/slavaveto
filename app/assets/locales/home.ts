@@ -14,13 +14,13 @@ const homeTranslations = {
             title_image_dark: "me_dark.jpg", // Путь к изображению для русского языка
 
 
-            page_about_btn: "Обо мне",
-            page_request_btn: "Записаться на консультацию",
-            page_tg4gt_btn: "/projects/default.jpg",
-            page_tg4gt_btn_dark: "/projects/default_dark.jpg",
-            page_supervision_btn: "/projects/default.jpg",
-            page_supervision_btn_dark: "/projects/default_dark.jpg",
-            page_message_btn: "Написать мне сообщение",
+            about_btn: "Обо мне",
+            request_btn: "Записаться на консультацию",
+            tg4gt_btn: "/projects/default.jpg",
+            tg4gt_btn_dark: "/projects/default_dark.jpg",
+            supervision_btn: "/projects/default.jpg",
+            supervision_btn_dark: "/projects/default_dark.jpg",
+            message_btn: "Написать мне сообщение",
 
         },
     },
@@ -35,13 +35,13 @@ const homeTranslations = {
 
 
 
-            page_about_btn: "Про мене",
-            page_request_btn: "Записатися на консультацію",
-            page_tg4gt_btn: "/projects/default_ua.jpg",
-            page_tg4gt_btn_dark: "/projects/default_ua_dark.jpg",
-            page_supervision_btn: "/projects/default_ua.jpg",
-            page_supervision_btn_dark: "/projects/default_ua_dark.jpg",
-            page_message_btn: "Написати мені повідомлення",
+            about_btn: "Про мене",
+            request_btn: "Записатися на консультацію",
+            tg4gt_btn: "/projects/default_ua.jpg",
+            tg4gt_btn_dark: "/projects/default_ua_dark.jpg",
+            supervision_btn: "/projects/default_ua.jpg",
+            supervision_btn_dark: "/projects/default_ua_dark.jpg",
+            message_btn: "Написати мені повідомлення",
 
         },
     },

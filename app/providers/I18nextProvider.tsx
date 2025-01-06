@@ -9,6 +9,7 @@ import miscTranslations from "@/app/assets/locales/misc";
 
 import aboutTranslations from "@/app/assets/locales/page_about";
 import tg4gtTranslations from "@/app/assets/locales/page_tg4gt";
+import supervisionTranslations from "@/app/assets/locales/page_supervision";
 
 // Поддерживаемые языки
 const supportedLanguages = ['ru', 'uk']; // Русский и Украинский
@@ -36,6 +37,7 @@ const resources = {
 
         about: aboutTranslations.ru.translation,
         tg4gt: tg4gtTranslations.ru.translation,
+        supervision: supervisionTranslations.ru.translation,
     },
     uk: {
         home: homeTranslations.uk.translation,
@@ -43,6 +45,7 @@ const resources = {
 
         about: aboutTranslations.uk.translation,
         tg4gt: tg4gtTranslations.uk.translation,
+        supervision: supervisionTranslations.uk.translation,
     },
 
 

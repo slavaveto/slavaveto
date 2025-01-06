@@ -5,7 +5,7 @@ import Header from "@/app/[pages]/components/Header";
 import {useTranslation} from "react-i18next";
 import LoremText from "@/app/components/LoremText";
 
-export default function AboutPage({page_namespace}: { page_namespace: string }) {
+export default function About ({page_namespace}: { page_namespace: string }) {
 
     const [activeKey, setActiveKey] = useState("description"); // Начальная вкладка
 

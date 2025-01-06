@@ -25,15 +25,17 @@ export default async function Page({ params }: { params: { pages: string } }) {
     }
 
     const pageKey = data?.page_key;
-    const pageNamespace = pageKey.split('_')[1]; // Извлекаем пространство имен
+    //const pageNamespace = pageKey.split('_')[1]; // Извлекаем пространство имен
+
+    const pageNamespace = pageKey;
 
     // Динамически загружаем компонент на основе page_namespace
     let DynamicComponent: React.FC<{ page_namespace: string }>;
 
     try {
-        DynamicComponent = (await import(`@/app/[pages]/pages/${pageNamespace}Page`)).default;
+        DynamicComponent = (await import(`@/app/[pages]/pages/${pageNamespace}`)).default;
     } catch (err) {
-        console.error(`Ошибка загрузки компонента для ${pageNamespace}Page:`, err);
+        console.error(`Ошибка загрузки компонента для ${pageNamespace}:`, err);
         redirect('/error-page'); // Перенаправляем на страницу ошибки
     }
 
