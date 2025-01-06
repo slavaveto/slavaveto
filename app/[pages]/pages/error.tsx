@@ -2,10 +2,10 @@
 
 import React from "react";
 import {Alert} from "@nextui-org/react";
-import ClientTranslation from "@/app/[pages]/components/ClientTranslation";
 import {useTranslation} from "react-i18next";
 import Link from "next/link";
 //import {Link} from "@nextui-org/react";
+import CustomAlert from "@/app/components/CustomAlert";
 
 import {TbArrowBackUp} from "react-icons/tb";
 
@@ -24,27 +24,11 @@ export default function Error ({page_namespace}: { page_namespace: string }) {
                  style={{maxWidth: '550px',}}>
 
 
-                <Alert
-                    classNames={{
-                        base: classNames(
-                            "bg-default-50 dark:bg-background shadow-sm",
-                            "border-1 border-default-200 dark:border-default-100",
-                            "relative before:content-[''] before:absolute before:z-10",
-                            "before:left-0 before:top-[-1px] before:bottom-[-1px] before:w-1",
-                            "rounded-l-none border-l-0",
-                            "before:bg-warning"
-                        ),
-                        mainWrapper: "pt-[8px] text-medium",
-                        iconWrapper: "dark:bg-transparent",
-                        description: "pt-[20px]"
-
-                    }}
-                    color="warning"
+                <CustomAlert
+                    color="danger"
+                    showIcon={true}
                     title={misc('error_page_title')}
-                    description={misc('error_page_message')}
-                    variant="faded"
-                >
-
+                    description={misc('error_page_message')}>
 
                     <div className="pl-0 flex w-full -justify-center  pt-[30px] ">
 
@@ -58,7 +42,9 @@ export default function Error ({page_namespace}: { page_namespace: string }) {
 
                     </div>
 
-                </Alert>
+                </CustomAlert>
+
+
 
 
             </div>

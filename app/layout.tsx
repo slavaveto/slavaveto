@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
 import "./globals.css";
 import { Providers } from "@/app/providers/Providers";
-import Footer from "@/app/components/Footer"; // Подключаем Footer
 import { themeScript } from "@/app/assets/themeScript";
 import React from "react"; // Обновите путь, если требуется
 

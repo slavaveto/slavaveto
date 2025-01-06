@@ -2,7 +2,6 @@
 
 import React from "react";
 import {Alert, Card, CardBody} from "@nextui-org/react";
-import ClientTranslation from "@/app/[pages]/components/ClientTranslation";
 import {useTranslation} from "react-i18next";
 import Link from "next/link";
 //import {Link} from "@nextui-org/react";

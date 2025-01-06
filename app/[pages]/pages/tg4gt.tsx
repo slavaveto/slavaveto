@@ -3,7 +3,6 @@
 
 
 import {IoIosArrowBack} from "react-icons/io";
-import ClientTranslation from "@/app/[pages]/components/ClientTranslation";
 import React, { useEffect, useState, useRef } from "react";
 
 import Header from "@/app/[pages]/components/Header";
