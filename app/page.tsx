@@ -5,12 +5,12 @@ import Avatar from "@/app/components/home_page/avatar";
 import Messengers from "@/app/components/home_page/messengers";
 
 import React, {useState, useEffect} from 'react';
-import Link from 'next/link';
 import {useRouter} from "next/navigation";
 import {supabase} from '@/app/assets/supabaseClient';
 import {Button} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
 import Footer from "@/app/components/Footer";
+import {Link} from "@nextui-org/react";
 
 import YouTubeEmbed from "@/app/components/YouTubeEmbed"; // Укажите путь к компоненту
 
@@ -23,9 +23,9 @@ export default function Home() {
 
     const router = useRouter();
 
-    const { t: ui } = useTranslation('ui');
+
     const { t: home } = useTranslation('home');
-    const { t: main_btns } = useTranslation('main_btns');
+    const { t: misc } = useTranslation('misc');
 
     // Состояния загрузки и данных
     const [isLoaded, setIsLoaded] = useState(false); // Управление спиннером
@@ -128,7 +128,20 @@ export default function Home() {
                     className="flex-grow container mx-auto px-3"
                     style={{ maxWidth: '500px' }}>
 
-                    <div className="flex flex-col gap-[20px] pt-6">
+<Link color="primary" className="flex justify-end mb-0 mt-[1px] p-0 items-center"
+style={{fontSize: '12px', }}
+href='/stand-with-Ukraine'
+      key="stand-with-Ukraine"
+      onClick={(e) => {
+          e.preventDefault(); // Предотвращаем стандартное поведение ссылки
+          handleNavigation("stand-with-Ukraine"); // Вызываем fade-out и навигацию
+      }}
+
+>
+    Stand with<img src="ua_flag.png" className="w-5 mx-2 rounded-[3px]"/>Ukraine
+</Link>
+
+                    <div className="flex flex-col gap-[20px] pt-0">
                         <Avatar/>
                         <Messengers/>
 
@@ -139,7 +152,7 @@ export default function Home() {
                         {fetchedPages.map(({slug, page_key, btn_type}) => (
                             btn_type === 'image' ? (
                                 // Если btn_type === 'image', создаём ссылку в виде изображения
-                                <a
+                                <Link
                                     key={slug}
                                     onClick={(e) => {
                                         e.preventDefault(); // Предотвращаем стандартное поведение ссылки
@@ -154,19 +167,19 @@ export default function Home() {
                                 >
                                     <img
                                         //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
-                                        src={main_btns(`${page_key}_btn`)} // Путь к изображению
+                                        src={home(`${page_key}_btn`)} // Путь к изображению
                                         alt={`Изображение для ${page_key}`} // Альтернативный текст
                                         className="block dark:hidden rounded-small hover:opacity-90 transition-opacity border-default -border-medium " // Стили
                                         style={{cursor: 'pointer'}}
                                     />
                                     <img
                                         //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
-                                        src={main_btns(`${page_key}_btn_dark`)} // Путь к изображению
+                                        src={home(`${page_key}_btn_dark`)} // Путь к изображению
                                         alt={`Изображение для ${page_key}`} // Альтернативный текст
                                         className="hidden dark:block rounded-small hover:opacity-90 transition-opacity -border-default -border-medium px-[1px]" // Стили
                                         style={{cursor: 'pointer'}}
                                     />
-                                </a>
+                                </Link>
 
                             ) : (
                                 <Button
@@ -177,7 +190,7 @@ export default function Home() {
                                     variant={"faded"}
                                     radius="sm"
                                 >
-                                    {main_btns(`${page_key}_btn`)}
+                                    {home(`${page_key}_btn`)}
 
                                 </Button>
 

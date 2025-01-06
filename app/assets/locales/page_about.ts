@@ -2,6 +2,7 @@ const aboutTranslations = {
     ru: {
         translation: {
             title: "Обо мне",
+            text: "Тут будет какой-то текст обо мне...",
 
 
         },
@@ -9,7 +10,7 @@ const aboutTranslations = {
     uk: {
         translation: {
             title: "Про мене",
-
+            text: "Тут буде якийсь текст про мене…",
 
 
 

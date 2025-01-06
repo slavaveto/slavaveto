@@ -36,28 +36,3 @@ html.dark {
 .dark .footer_bg {
   @apply bg-footerDark/* Для тёмной темы */
 }
-
-
-
-
-/* Стилизуем стили переключателей темы и языков*/
-footer div[data-slot="tabList"] {
-  gap: 4px !important; /* Устанавливаем отступы */
-  padding: 6px !important;
-  border-radius: 10px !important;
-}
-footer button[data-slot="tab"]{
-  padding: 0px 10px !important; /* Устанавливаем нужные отступы */
-}
-
-/* Стили для больших экранов (1024px и выше) */
-@media (min-width: 450px) {
-  footer div[data-slot="tabList"] {
-    gap: 4px !important; /* Увеличиваем отступы */
-    padding: 5px !important; /* Увеличиваем внутренние отступы */
-    border-radius: 10px !important; /* Увеличиваем скругление */
-  }
-  footer button[data-slot="tab"] {
-    padding: 0px 6px !important; /* Увеличиваем отступы для кнопок */
-  }
-}

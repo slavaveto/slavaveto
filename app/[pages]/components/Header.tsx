@@ -2,6 +2,7 @@
 
 
 import Link from "next/link";
+//import {Link} from "@nextui-org/react";
 import {IoIosArrowBack} from "react-icons/io";
 import ClientTranslation from "@/app/[pages]/components/ClientTranslation";
 import React from "react";
@@ -13,6 +14,7 @@ import { Tabs, Tab } from "@nextui-org/react";
 interface HeaderProps {
     width: string;
     page_namespace: string;
+    disableAllTabs?: boolean; // Новый пропс для отключения всех вкладок
 }
 
 interface TabsProps {
@@ -24,7 +26,8 @@ interface TabsProps {
 type CombinedProps = HeaderProps & TabsProps;
 
 
-export default function Header({ width, page_namespace, activeKey, setActiveKey }: CombinedProps) {
+export default function Header({width, page_namespace, activeKey, setActiveKey, disableAllTabs = false}: CombinedProps) {
+
 
 
     return (
@@ -35,55 +38,76 @@ export default function Header({ width, page_namespace, activeKey, setActiveKey 
                 }}
         >
 
-            <div className="container flex mx-auto px-3  items-center "
+            <div className="container flex mx-auto px-3 flex-col  "
                  style={{maxWidth: `${width}px`}}>
 
-                <div className="flex flex-col ">
+<div className="flex flex-row items-start">
+                <Link
+                    href="/"
+                    className="flex items-center text-default-500 hover:text-primary-400 transition"
+                >
+                    <TbArrowBackUp size={26} className="-ml-[4px] mt-[24px] font-medium"/>
+                </Link>
 
-                    <Link
-                        color="foreground"
-                        href="/"
-                        className="mt-5 mb-4 flex flex-row items-center"
-                    >
-                        {/*<IoIosArrowBack className="-ml-[8px]" size={26}/>*/}
-                        <TbArrowBackUp size={26} className="-ml-[4px] font-medium"/>
-                        {/*<p className=" mb-[1px] -font-semibold">{ui('return_home')}</p>*/}
-                        <p className=" mb-[0px] -font-semibold ml-2">
-                            <ClientTranslation phrase_key="return_home" namespace="ui"/>
-                        </p>
-
-                    </Link>
-
-                    <div className="text-2xl -ml-[1px] mb-1 text-primary -font-semibold leading-[26px]">
-                        <ClientTranslation phrase_key="title" namespace={page_namespace}/>
-                    </div>
+                <div className="text-2xl ml-[30px]  pt-[25px] pb-[20px] text-primary -font-semibold leading-[26px]">
+                    <ClientTranslation phrase_key="title" namespace={page_namespace}/>
                 </div>
+
+</div>
+
+
+                    {/*<Link*/}
+                    {/*    color="foreground"*/}
+                    {/*    href="/"*/}
+                    {/*    className="mt-5 mb-4 flex flex-row items-center"*/}
+                    {/*>*/}
+                    {/*    /!*<IoIosArrowBack className="-ml-[8px]" size={26}/>*!/*/}
+                    {/*    <TbArrowBackUp size={26} className="-ml-[4px] font-medium"/>*/}
+                    {/*    /!*<p className=" mb-[1px] -font-semibold">{ui('return_home')}</p>*!/*/}
+                    {/*    <p className=" mb-[0px] -font-semibold ml-2">*/}
+                    {/*        <ClientTranslation phrase_key="return_home" namespace="ui"/>*/}
+                    {/*    </p>*/}
+
+                    {/*</Link>*/}
+
+                    {/*<div className="text-2xl -ml-[1px] mb-1 text-primary -font-semibold leading-[26px]">*/}
+                    {/*    <ClientTranslation phrase_key="title" namespace={page_namespace}/>*/}
+                    {/*</div>*/}
+
+
+                {!disableAllTabs && ( // Условно рендерим вкладки только если disableAllTabs === false
+                    <Tabs
+                        fullWidth
+                        color="default"
+                        aria-label="Tabs variants"
+                        variant="underlined"
+                        selectedKey={activeKey} // Передаем текущее значение из основного компонента
+                        onSelectionChange={(key) => setActiveKey(key as string)} // Изменяем активную вкладку
+                        classNames={{
+                            tabList: "flex w-full px-0 mx-0 pb-2 pt-0 justify-between",
+                            tab: "w-full py-[20px] m-0 ",
+                            cursor: "w-full  group-data-[selected=true]:text-[#06b6d4]",
+                        }}
+                        style={{
+                            position: "sticky",
+                            top: 0,
+                        }}
+                    >
+                        <Tab key="description" title="Описание"/>
+                        <Tab key="i_want" title="Хочу с вами!" />
+                        <Tab key="payment" title="Оплата" />
+                    </Tabs>
+                )}
+
+
+
+
 
             </div>
 
 
 
-            <Tabs
-                fullWidth
-                color="default"
-                aria-label="Tabs variants"
-                variant="underlined"
-                selectedKey={activeKey} // Передаем текущее значение из основного компонента
-                onSelectionChange={(key) => setActiveKey(key as string)} // Изменяем активную вкладку
-                classNames={{
-                    tabList: "flex w-full px-0 mx-0 justify-between",
-                    tab: "w-full py-[20px] m-0 ",
-                    cursor: "w-full color-primary group-data-[selected=true]:text-[#06b6d4]",
-                }}
-                style={{
-                    position: "sticky",
-                    top: 0,
-                }}
-            >
-                <Tab key="description" title="Описание" />
-                <Tab key="i_want" title="Хочу с вами!" />
-                <Tab key="payment" title="Оплата" />
-            </Tabs>
+
 
         </header>
 

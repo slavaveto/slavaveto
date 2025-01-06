@@ -1,28 +1,18 @@
+import React from "react";
 import {supabase} from "@/app/assets/supabaseClient";
+import { redirect } from 'next/navigation';
 
 import FadeWrapper from "@/app/[pages]/components/FadeWrapper";
 import Footer from "@/app/components/Footer";
 
-import { redirect } from 'next/navigation';
-
 import YouTubeEmbed from "@/app/components/YouTubeEmbed"; // Укажите путь к компоненту
-
 import LoremText from "@/app/components/LoremText";
-import React from "react";
 
-import ClientTranslation from "./components/ClientTranslation"
-
-import Header from "@/app/[pages]/components/Header";
-import AboutPage from "@/app/[pages]/pages/AboutPage";
-import ErrorPage from "@/app/[pages]/pages/ErrorPage";
-import RequestPage from "@/app/[pages]/pages/RequestPage";
-import Tg4gtPage from "@/app/[pages]/pages/Tg4gtPage";
-
-export default async function Page({params}: { params: { pages: string } }) {
+export default async function Page({ params }: { params: { pages: string } }) {
     const slug = params.pages;
 
     // Получаем данные из базы данных
-    const {data, error} = await supabase
+    const { data, error } = await supabase
         .from('_pages') // Имя вашей таблицы
         .select('page_key') // Указываем столбец, который нам нужен
         .eq('slug', slug) // Фильтруем по slug
@@ -35,42 +25,24 @@ export default async function Page({params}: { params: { pages: string } }) {
     }
 
     const pageKey = data?.page_key;
-    const page_namespace = pageKey.split('_')[1];
+    const pageNamespace = pageKey.split('_')[1]; // Извлекаем пространство имен
 
-    //console.log("page_namespace", pageKey);
+    // Динамически загружаем компонент на основе page_namespace
+    let DynamicComponent: React.FC<{ page_namespace: string }>;
 
-    const components: Record<string, React.FC<{ page_namespace: string }>> = {
-        aboutPage: AboutPage,
-        errorPage: ErrorPage,
-        requestPage: RequestPage,
-        tg4gtPage: Tg4gtPage,
-
-
-    };
-    const DynamicComponent = components[`${page_namespace}Page`];
-
-
-
+    try {
+        DynamicComponent = (await import(`@/app/[pages]/pages/${pageNamespace}Page`)).default;
+    } catch (err) {
+        console.error(`Ошибка загрузки компонента для ${pageNamespace}Page:`, err);
+        redirect('/error-page'); // Перенаправляем на страницу ошибки
+    }
 
     return (
-
         <FadeWrapper>
             <div className="flex flex-col min-h-svh">
-                {/*{pageKey !== 'page_error' && <Header width="550" page_namespace={page_namespace}/>}*/}
-
-                <main className="flex-grow container mx-auto px-3 pt-3"
-                      style={{ maxWidth: '550px' }}>
-
-                    <DynamicComponent page_namespace={page_namespace}/>
-
-                </main>
-
-                    <Footer width="550"/>
+                <DynamicComponent page_namespace={pageNamespace} />
+                <Footer width="550" />
             </div>
-
-
         </FadeWrapper>
-);
+    );
 }
-
-

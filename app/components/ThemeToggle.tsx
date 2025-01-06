@@ -16,7 +16,8 @@ const ThemeToggle: React.FC = () => {
             selectedKey={theme}
             onSelectionChange={(key) => setTheme(key as 'light' | 'dark' | 'system')}
             classNames={{
-                tab: "",
+                tabList: "gap-[4px] p-[0px] ",
+                tab: "h-[38px] md:h-[34px] px-[14px] md:px-[8px]",
                 tabContent: " group-data-[selected=true]:text-primary-400",
             }}
         >

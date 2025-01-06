@@ -1,7 +1,7 @@
 "use client";
 
 
-import Link from "next/link";
+
 import {IoIosArrowBack} from "react-icons/io";
 import ClientTranslation from "@/app/[pages]/components/ClientTranslation";
 import React, { useEffect, useState, useRef } from "react";
@@ -22,12 +22,12 @@ export default function Tg4gtPage ({ page_namespace }: { page_namespace: string 
 
     return (
 
+        <>
 
-<>
+            <Header width="550" page_namespace={page_namespace} activeKey={activeKey} setActiveKey={setActiveKey}/>
 
-    <Header width="550" page_namespace={page_namespace} activeKey={activeKey} setActiveKey={setActiveKey} />
-
-
+            <main className="flex-grow container mx-auto px-3 pt-3"
+                  style={{maxWidth: '550px'}}>
 
                 {/*<LoremText paragraphs={5}/>*/}
                 {activeKey === "description" && (
@@ -36,8 +36,10 @@ export default function Tg4gtPage ({ page_namespace }: { page_namespace: string 
                     </div>
                 )}
 
+            </main>
 
-</>
 
-    )
-}
+            </>
+
+            )
+            }

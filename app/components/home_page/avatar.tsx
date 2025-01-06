@@ -24,7 +24,7 @@ export default function Avatar() {
                     className="hidden dark:block w-[120px] rounded-full  border-0"
                     style={{boxShadow: "0 0px 10px rgba(0, 0, 0, 0.2)"}}
                 />
-                <div className="flex w-full justify-end -items-center -justify-center">
+                <div className="flex w-full justify-end -items-center -justify-center mt-[2px]">
                     <div className="-pl-10  ">
                         <p className="font-medium text-[26px] xs375:text-[29px] xs414:text-[30px] xs450:text-[32px] leading-5 pb-1">{home('title')}</p>
                         <p className="leading-4 text-sm italic w-full text-right -text-center pr-[5px]">{home('subtitle')} </p>
