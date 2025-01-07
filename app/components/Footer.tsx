@@ -6,10 +6,10 @@ import LangToggle from "@/app/components/LangToggle";
 
 export default function Footer ({ width }: { width: string }) {
 
-    console.log(width);
+    //console.log(width);
 
     return (
-        <footer className="footer_bg flex h-[70px] mt-[40px] items-center ">
+        <footer className="footer_bg flex --h-[65px] pt-[15px] pb-[18px] mt-[40px] items-center ">
             <div className="container flex mx-auto px-3 -justify-between justify-end items-center"
                  style={{ maxWidth: `${width}px`}}>
                 {/*<div>*/}

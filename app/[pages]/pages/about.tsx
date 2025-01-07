@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import Header from "@/app/[pages]/components/Header";
 import {useTranslation} from "react-i18next";
 import LoremText from "@/app/components/LoremText";
+import Footer from "@/app/components/Footer";
 
 export default function About ({page_namespace}: { page_namespace: string }) {
 
@@ -30,6 +31,7 @@ export default function About ({page_namespace}: { page_namespace: string }) {
 
 
             </main>
+            <Footer width="550" />
         </>
     )
 

@@ -10,13 +10,14 @@ import CustomAlert from "@/app/components/CustomAlert";
 import {TbArrowBackUp} from "react-icons/tb";
 
 import classNames from "classnames";
+import Footer from "@/app/components/Footer";
 
 export default function Error ({page_namespace}: { page_namespace: string }) {
 
     const {t: misc} = useTranslation('misc');
 
     return (
-
+<>
         <main className="flex-grow container mx-auto">
 
             <div className=" fixed inset-0 flex items-center -justify-center mx-auto px-3
@@ -30,7 +31,7 @@ export default function Error ({page_namespace}: { page_namespace: string }) {
                     title={misc('error_page_title')}
                     description={misc('error_page_message')}>
 
-                    <div className="pl-0 flex w-full -justify-center  pt-[30px] ">
+                    <div className="pl-0 flex w-full -justify-center  pt-[30px] pb-[15px]">
 
 
                         <Link className="flex flex-row text-primary-500 hover:text-primary-400 transition items-center"
@@ -51,5 +52,7 @@ export default function Error ({page_namespace}: { page_namespace: string }) {
 
         </main>
 
+    <Footer width="550" />
+</>
     )
 }

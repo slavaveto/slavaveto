@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { pages: string } }) {
         <FadeWrapper>
             <div className="flex flex-col min-h-svh">
                 <DynamicComponent page_namespace={pageNamespace} />
-                <Footer width="550" />
+
             </div>
         </FadeWrapper>
     );

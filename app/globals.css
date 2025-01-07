@@ -14,6 +14,12 @@
 
 
 
+
+
+
+
+
+
 /* Светлая тема */
 html.light {
   @apply bg-light-background text-light-text;
@@ -23,12 +29,6 @@ html.dark {
   @apply bg-dark-background text-dark-text;
 }
 
-
-
-
-
-
-
 /* Глобальный класс для header и footer */
 .footer_bg {
   @apply bg-footerLight/* Для светлой темы */
@@ -36,3 +36,5 @@ html.dark {
 .dark .footer_bg {
   @apply bg-footerDark/* Для тёмной темы */
 }
+
+

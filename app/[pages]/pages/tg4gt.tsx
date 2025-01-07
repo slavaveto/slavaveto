@@ -1,18 +1,16 @@
 "use client";
 
-
-
 import {IoIosArrowBack} from "react-icons/io";
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef} from "react";
 
 import Header from "@/app/[pages]/components/Header";
 
-
 import LoremText from "@/app/components/LoremText";
 import {useTranslation} from "react-i18next";
+import Footer from "@/app/components/Footer";
+import ContactForm from "@/app/components/ContactForm";
 
-
-export default function Tg4gt ({ page_namespace }: { page_namespace: string }) {
+export default function Tg4gt({page_namespace}: { page_namespace: string }) {
 
     const [activeKey, setActiveKey] = useState("description"); // Начальная вкладка
 
@@ -22,6 +20,7 @@ export default function Tg4gt ({ page_namespace }: { page_namespace: string }) {
         <span dangerouslySetInnerHTML={{__html: text}}/>
     );
 
+    const isMessageRequired = false;
 
     return (
 
@@ -41,10 +40,24 @@ export default function Tg4gt ({ page_namespace }: { page_namespace: string }) {
                     </div>
                 )}
 
+                {activeKey === "i_want" && (
+                    <div className="-max-w-[400px] -mx-auto">
+
+                        <ContactForm
+                            isMessageRequired={isMessageRequired}
+                            page={page_namespace}
+                            formMessageBefore={tg4gt('form_text_before')}
+                            formMessageAfter={tg4gt('form_text_after')}
+                            onSubmitSuccess={() => {
+                            }}/>
+
+                    </div>
+                )}
+
             </main>
 
+            <Footer width="550"/>
+        </>
 
-            </>
-
-            )
-            }
+    )
+}

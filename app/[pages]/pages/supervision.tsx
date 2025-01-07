@@ -10,6 +10,7 @@ import Header from "@/app/[pages]/components/Header";
 
 import LoremText from "@/app/components/LoremText";
 import {useTranslation} from "react-i18next";
+import Footer from "@/app/components/Footer";
 
 
 export default function Supervision ({ page_namespace }: { page_namespace: string }) {
@@ -42,7 +43,7 @@ export default function Supervision ({ page_namespace }: { page_namespace: strin
                 )}
 
             </main>
-
+            <Footer width="550" />
 
             </>
 

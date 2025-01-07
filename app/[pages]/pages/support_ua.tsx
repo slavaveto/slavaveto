@@ -7,6 +7,7 @@ import Link from "next/link";
 //import {Link} from "@nextui-org/react";
 
 import {TbArrowBackUp} from "react-icons/tb";
+import Footer from "@/app/components/Footer";
 
 export default function SupportUkraine ({page_namespace}: { page_namespace: string }) {
 
@@ -16,8 +17,8 @@ export default function SupportUkraine ({page_namespace}: { page_namespace: stri
     );
 
     return (
-
-        <main className="flex-grow container mx-auto px-3 pt-[20px]"
+<>
+        <main className="flex-grow container mx-auto px-3 pt-[25px]"
               style={{maxWidth: '550px'}}>
 
             <div className="flex flex-col">
@@ -47,5 +48,7 @@ export default function SupportUkraine ({page_namespace}: { page_namespace: stri
 
 </main>
 
+    <Footer width="550" />
+</>
 )
 }

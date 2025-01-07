@@ -43,7 +43,8 @@ export default function Header({width, page_namespace, activeKey, setActiveKey, 
         <header className="-header_bg -opacity-90 backdrop-blur-xl"
                 style={{
                     position: 'sticky',
-                    top: 0
+                    top: 0,
+                    zIndex: 50,
                 }}
         >
 
@@ -98,9 +99,9 @@ export default function Header({width, page_namespace, activeKey, setActiveKey, 
                             selectedKey={activeKey} // Передаем текущее значение из основного компонента
                             onSelectionChange={(key) => setActiveKey(key as string)} // Изменяем активную вкладку
                             classNames={{
-                                tabList: "flex w-full px-0 mx-0 pb-2 pt-0 justify-between",
-                                tab: "w-full py-[20px] m-0 ",
-                                cursor: "w-full  bg-primary",
+                                tabList: "flex w-full mb-[5px] px-0 gap-3 mx-0 p-0 pb-[1px] pt-0 justify-between ",
+                                tab: "w-full py-[20px] m-0 border-b border-divider pb-[25px] md:pb-[25px]",
+                                cursor: "w-full  bg-primary -mb-[2px] h-[2px]",
                             }}
                             style={{
                                 position: "sticky",

@@ -5,6 +5,7 @@ import Header from "@/app/[pages]/components/Header";
 import {useTranslation} from "react-i18next";
 import LoremText from "@/app/components/LoremText";
 import ContactForm from "@/app/components/ContactForm";
+import Footer from "@/app/components/Footer";
 
 
 export default function Request ({page_namespace}: { page_namespace: string }) {
@@ -16,26 +17,25 @@ export default function Request ({page_namespace}: { page_namespace: string }) {
         <span dangerouslySetInnerHTML={{__html: text}}/>
     );
 
-    const isEmailSendingEnabled = true;
-    //const isEmailSendingEnabled = false;
     const isMessageRequired = false;
 
     return (
         <>
-            <Header width="550" page_namespace={page_namespace} activeKey={activeKey} setActiveKey={setActiveKey}
+            <Header width="450" page_namespace={page_namespace} activeKey={activeKey} setActiveKey={setActiveKey}
                     disableAllTabs={true} // Отключаем все вкладки
             />
 
 
             <main className="flex-grow container mx-auto px-3"
-                  style={{maxWidth: '550px'}}>
+                  style={{maxWidth: '450px'}}>
 
 
                 <div>
                     <ContactForm
-                        isEmailSendingEnabled={isEmailSendingEnabled}
                         isMessageRequired={isMessageRequired}
                         page={page_namespace}
+                        formMessageBefore={misc('request_page_text_before')}
+                        formMessageAfter={misc('request_page_text_after')}
                         onSubmitSuccess={() => {
                         }}/>
 
@@ -46,6 +46,7 @@ export default function Request ({page_namespace}: { page_namespace: string }) {
 
 
             </main>
+            <Footer width="450" />
         </>
     )
 
