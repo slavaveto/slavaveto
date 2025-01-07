@@ -146,7 +146,7 @@ href='/stand-with-Ukraine'
                         <Messengers/>
 
 
-                            <YouTubeEmbed videoId="J5qxn8P6Hec" />
+                            {/*<YouTubeEmbed videoId="J5qxn8P6Hec" />*/}
 
 
                         {fetchedPages.map(({slug, page_key, btn_type}) => (

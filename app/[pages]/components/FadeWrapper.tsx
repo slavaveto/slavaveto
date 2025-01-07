@@ -9,8 +9,10 @@ const FadeWrapper = ({children}: { children: React.ReactNode }) => {
     const router = useRouter();
 
     useEffect(() => {
-            window.scrollTo(0, 0); // Прокручиваем страницу наверх
-    })
+        if (typeof window !== 'undefined') {
+            window.scrollTo(0, 0);
+        }
+    }, []);
 
     const handleNavigation = (href: string) => {
         setIsExiting(true); // Активируем fade-out
@@ -51,11 +53,9 @@ const FadeWrapper = ({children}: { children: React.ReactNode }) => {
 
     function handleLinkClick(event: React.MouseEvent<HTMLDivElement>) {
         const link = (event.target as HTMLElement).closest('a');
-        //console.log('Ссылка найдена:', link);
-        if (link && link.href.startsWith(window.location.origin)) {
-            event.preventDefault(); // Предотвращаем переход по ссылке
-            //console.log('Переход через handleNavigation:', link.href);
-            handleNavigation(link.href); // Обрабатываем fade-out
+        if (link && link.href && link.href.startsWith(window.location.origin)) {
+            event.preventDefault();
+            handleNavigation(link.href);
         }
     }
 };
