@@ -20,6 +20,7 @@
 
 
 
+
 /* Светлая тема */
 html.light {
   @apply bg-light-background text-light-text;
