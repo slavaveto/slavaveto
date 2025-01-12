@@ -13,6 +13,7 @@
     "@nextui-org/react": "^2.6.11",
     "@supabase/supabase-js": "^2.47.10",
     "classnames": "^2.5.1",
+    "dompurify": "^3.2.3",
     "framer-motion": "^11.16.1",
     "html-react-parser": "^5.2.2",
     "i18next": "^24.2.0",

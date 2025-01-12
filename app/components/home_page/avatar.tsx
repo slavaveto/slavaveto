@@ -1,11 +1,21 @@
-//"use client";
+"use client";
 
 import {useTranslation} from 'react-i18next';
+import React from "react";
+import DOMPurify from 'dompurify';
 
 export default function Avatar() {
 
     const { t: ui } = useTranslation('ui');
     const { t: home } = useTranslation('home');
+
+    // const HtmlString = ({text}: { text: string }) => (
+    //     <span dangerouslySetInnerHTML={{__html: text}}/>
+    // );
+
+    const HtmlString = ({ text }: { text: string }) => (
+        <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }} />
+    );
 
 
     return (
@@ -32,9 +42,12 @@ export default function Avatar() {
                 </div>
 
             </div>
-            <div style={{whiteSpace: 'pre-line'}}>
-                {home('greeting')}
-            </div>
+<div className="some_rich_text">
+            <HtmlString text={home('greeting')}/>
+        </div>
+            {/*<div style={{whiteSpace: 'pre-line'}}>*/}
+            {/*    {home('greeting')}*/}
+            {/*</div>*/}
         </>
 
     );
