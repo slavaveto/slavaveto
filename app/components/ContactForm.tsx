@@ -4,45 +4,27 @@ import React, {useState, useEffect, useRef} from "react";
 import {Input, Button, Textarea, Alert} from "@nextui-org/react";
 import {AnimatePresence, motion} from "framer-motion";
 import emailjs from "@emailjs/browser";
-import {useTranslation} from "react-i18next";
 import CustomAlert from "@/app/components/CustomAlert";
 import {TbArrowBackUp} from "react-icons/tb";
 import Link from "next/link";
+import LocalText from "@/app/assets/localText";
+
 
 const isEmailSendingEnabled = false;
+const isTestData = true
+const istError = false
 
 interface ContactFormProps {
     isMessageRequired?: boolean; // Если это свойство необязательное
-    page?: string; // Добавлено: URL текущей страницы
-    formMessageBefore?: string; // Текст перед формой
-    formMessageAfter?: string; // Текст после формы
+    namespace?: string; // Добавлено: URL текущей страницы
     onSubmitSuccess?: () => void;
 }
 
-export default function ContactForm({
-                                        isMessageRequired,
-                                        page,
-                                        formMessageBefore,
-                                        formMessageAfter,
-                                        onSubmitSuccess,
-                                    }: ContactFormProps) {
+export default function ContactForm({isMessageRequired, namespace, onSubmitSuccess,}: ContactFormProps) {
 
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
     const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID!;
-
-    const {t} = useTranslation("misc");
-
-    const form_message_before = page === "message"
-        ? t("message_page_text_before")
-        : page === "request"
-            ? t("request_page_text_before")
-            : "";
-    const form_message_after = page === "message"
-        ? t("message_page_text_after")
-        : page === "request"
-            ? t("request_page_text_after")
-            : "";
 
     const [initialFormData, setInitialFormData] = useState({
         name: "",
@@ -51,12 +33,21 @@ export default function ContactForm({
         message: "",
     });
 
+    // Определяем тестовые данные
+    const testName = "Слава Тестов";
+    const testEmail = "test@test.com";
+    const testTelegram = "@mytelegram";
+    const testMessage = "testMessage";
+
+// Устанавливаем начальное состояние
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        telegram: "",
-        message: "",
+        name: isTestData ? testName : "",
+        email: isTestData ? testEmail : "",
+        telegram: isTestData ? testTelegram : "",
+        message: isTestData ? testMessage : "",
     });
+
+
     const [errors, setErrors] = useState({
         name: false,
         email: false,
@@ -142,7 +133,7 @@ export default function ContactForm({
                             email: formData.email,
                             telegram: formData.telegram,
                             message: formData.message,
-                            page: page,
+                            page: namespace,
                         },
                         userId
                     );
@@ -160,8 +151,12 @@ export default function ContactForm({
                 });
                 setErrors({name: false, email: false, telegram: false, message: false});
 
-                setSubmissionError(null); // Очистка ошибок при успешной отправке
-                //setSubmissionError("Тестовая ошибка: сервис временно недоступен."); // Устанавливаем ошибку для тестирования
+                // Используем istError для управления ошибкой
+                if (istError) {
+                    setSubmissionError("Тестовая ошибка: сервис временно недоступен."); // Устанавливаем ошибку для тестирования
+                } else {
+                    setSubmissionError(null); // Очищаем ошибку
+                }
 
             } catch (error) {
                 console.error("Ошибка отправки через EmailJS:", error);
@@ -264,7 +259,7 @@ export default function ContactForm({
                                     description="">
 
                                     <div className="text-foreground p-0">
-                                        {formMessageBefore}
+                                        <LocalText text={"form_before"} ns={`${namespace}`}/>
                                     </div>
 
 
@@ -274,7 +269,8 @@ export default function ContactForm({
                             <Input
                                 label={
                                     <span>
-                                    {t("form_name")}<span className="text-danger-300"> *</span>
+                                        <LocalText text={"form_name"} ns={`misc`}/>
+                                        <span className="text-danger-300"> *</span>
                                 </span>
                                 }
                                 name="name"
@@ -357,7 +353,7 @@ export default function ContactForm({
                             <Textarea
                                 label={
                                     <span>
-                                    {t("form_message")}
+                                        <LocalText text={"form_message"} ns={`misc`}/>
                                         <span className="text-danger-300">
                                     {isMessageRequired ? " *" : ""}
                                         </span>
@@ -378,7 +374,7 @@ export default function ContactForm({
                                 isLoading={isLoading}
                                 className="rounded-small"
                             >
-                                {isLoading ? t("form_sending") : t("form_send")}
+                                {isLoading ? <LocalText text={"form_sending"} ns={`misc`}/> : <LocalText text={"form_send"} ns={`misc`}/>}
                             </Button>
                         </motion.div>
                     ) : (
@@ -395,31 +391,31 @@ export default function ContactForm({
                                     <CustomAlert
                                         color="danger"
                                         showIcon={true}
-                                        title={t("form_error_message")}
+                                        title = {<LocalText text={"form_error_title"} ns={`misc`}/>}
                                         description=""
                                     >
-
                                         <div
                                             className=" pt-[30px] pb-[10px] flex flex-row text-primary-500 hover:text-primary-400 transition items-center cursor-pointer"
-                                            //href="/"
 
                                             onClick={(e) => {
                                                 e.preventDefault(); // Останавливаем стандартное поведение навигации
                                                 handleReset(); // Вызываем функцию сброса формы
                                             }}
                                         ><TbArrowBackUp size={24} className=""/> <span
-                                            className="pl-4 text-[14px]">{t("form_error_link")}</span></div>
+                                            className="pl-4 text-[14px]">{<LocalText text={"form_error_text"} ns={`misc`}/>}</span>
+                                        </div>
+
                                     </CustomAlert>
 
                                 ) : (
                                     <CustomAlert
                                         color="success"
                                         showIcon={true}
-                                        title=""
+                                        title={<LocalText text={"form_after_title"} ns={`${namespace}`}/>}
                                         description=""
                                     >
                                         <div className="text-foreground">
-                                            {formMessageAfter}
+                                            <LocalText text={"form_after_text"} ns={`${namespace}`}/>
                                         </div>
                                     </CustomAlert>
                                 )}

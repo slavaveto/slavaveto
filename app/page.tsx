@@ -1,6 +1,6 @@
 'use client';
 
-import LoremText from "@/app/components/LoremText";
+import LoremText from "@/app/assets/loremText";
 import Avatar from "@/app/components/home_page/avatar";
 import Messengers from "@/app/components/home_page/messengers";
 
@@ -10,11 +10,14 @@ import {supabase} from '@/app/assets/supabaseClient';
 import {Button} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
 import Footer from "@/app/components/Footer";
-import {Link} from "@nextui-org/react";
 
-import YouTubeEmbed from "@/app/components/YouTubeEmbed"; // Укажите путь к компоненту
+import Link from "next/link";
 
 
+
+import YouTubeEmbed from "@/app/assets/youtubeEmbed"; // Укажите путь к компоненту
+
+import LocalText from "@/app/assets/localText";
 import {useTranslation} from 'react-i18next';
 
 let isFirstLoad = true;
@@ -22,10 +25,7 @@ let isFirstLoad = true;
 export default function Home() {
 
     const router = useRouter();
-
-
-    const { t: home } = useTranslation('home');
-    const { t: misc } = useTranslation('misc');
+    const { t } = useTranslation();
 
     // Состояния загрузки и данных
     const [isLoaded, setIsLoaded] = useState(false); // Управление спиннером
@@ -101,6 +101,7 @@ export default function Home() {
 
         <>
 
+
             {!isLoaded && isFirstLoad && (
                 <div
                     className="fixed inset-0 flex justify-center items-center h-screen translate-y-[-10vh] xs450:translate-y-[-5vh]">
@@ -128,10 +129,9 @@ export default function Home() {
                     className="flex-grow container mx-auto px-3"
                     style={{ maxWidth: '500px' }}>
 
-<Link color="primary" className="flex justify-end mb-0 mt-[1px] p-0 items-center"
+<Link className="flex justify-end mb-0 mt-[5px] p-0 items-center text-primary-500 hover:text-primary-400 transition"
 style={{fontSize: '12px', }}
 href='/stand-with-Ukraine'
-      key="stand-with-Ukraine"
       onClick={(e) => {
           e.preventDefault(); // Предотвращаем стандартное поведение ссылки
           handleNavigation("stand-with-Ukraine"); // Вызываем fade-out и навигацию
@@ -145,13 +145,13 @@ href='/stand-with-Ukraine'
                         <Avatar/>
                         <Messengers/>
 
-
-
-
                             {/*<YouTubeEmbed videoId="J5qxn8P6Hec" />*/}
 
 
                         {fetchedPages.map(({slug, page_key, btn_type}) => (
+
+
+
                             btn_type === 'image' ? (
                                 // Если btn_type === 'image', создаём ссылку в виде изображения
                                 <Link
@@ -168,15 +168,14 @@ href='/stand-with-Ukraine'
                                     }}
                                 >
                                     <img
-                                        //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
-                                        src={home(`${page_key}_btn`)} // Путь к изображению
+                                        // src={home(`${page_key}_btn`)} // Путь к изображению
+                                        src={t('home_btn', { ns: `${page_key}` })}
                                         alt={`Изображение для ${page_key}`} // Альтернативный текст
                                         className="block dark:hidden rounded-small hover:opacity-90 transition-opacity border-default -border-medium " // Стили
                                         style={{cursor: 'pointer'}}
                                     />
                                     <img
-                                        //src={`/path/to/image/${page_key}.jpg`} // Путь к изображению
-                                        src={home(`${page_key}_btn_dark`)} // Путь к изображению
+                                        src={t('home_btn_dark', { ns: `${page_key}` })}
                                         alt={`Изображение для ${page_key}`} // Альтернативный текст
                                         className="hidden dark:block rounded-small hover:opacity-90 transition-opacity -border-default -border-medium px-[1px]" // Стили
                                         style={{cursor: 'pointer'}}
@@ -192,8 +191,7 @@ href='/stand-with-Ukraine'
                                     variant={"faded"}
                                     radius="sm"
                                 >
-                                    {home(`${page_key}_btn`)}
-
+                                    <LocalText text={"home_btn"} ns={`${page_key}`}/>
                                 </Button>
 
                             )

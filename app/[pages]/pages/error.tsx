@@ -2,19 +2,17 @@
 
 import React from "react";
 import {Alert} from "@nextui-org/react";
-import {useTranslation} from "react-i18next";
 import Link from "next/link";
-//import {Link} from "@nextui-org/react";
+import ReturnHome from "@/app/assets/returnHome";
+
 import CustomAlert from "@/app/components/CustomAlert";
 
+import LocalText from "@/app/assets/localText";
 import {TbArrowBackUp} from "react-icons/tb";
 
-import classNames from "classnames";
 import Footer from "@/app/components/Footer";
 
-export default function Error ({page_namespace}: { page_namespace: string }) {
-
-    const {t: misc} = useTranslation('misc');
+export default function Error ({namespace}: { namespace: string }) {
 
     return (
 <>
@@ -28,17 +26,14 @@ export default function Error ({page_namespace}: { page_namespace: string }) {
                 <CustomAlert
                     color="danger"
                     showIcon={true}
-                    title={misc('error_page_title')}
-                    description={misc('error_page_message')}>
+                    title={<LocalText text={"error_title"} ns={`${namespace}`}/>}
+                    description={<LocalText text={"error_text"} ns={`${namespace}`}/>
+                }>
 
-                    <div className="pl-0 flex w-full -justify-center  pt-[30px] pb-[15px]">
+                    <div className="pl-0 flex w-full -justify-center   pb-[15px]">
 
+                        <ReturnHome />
 
-                        <Link className="flex flex-row text-primary-500 hover:text-primary-400 transition items-center"
-                              href="/"
-
-                        > <TbArrowBackUp size={24} className=""/> <span
-                            className="pl-4 text-[14px]">{misc('return_home')}</span> </Link>
 
 
                     </div>

@@ -1,12 +1,8 @@
 import React from "react";
 import {supabase} from "@/app/assets/supabaseClient";
 import { redirect } from 'next/navigation';
-
 import FadeWrapper from "@/app/[pages]/components/FadeWrapper";
-import Footer from "@/app/components/Footer";
 
-import YouTubeEmbed from "@/app/components/YouTubeEmbed"; // Укажите путь к компоненту
-import LoremText from "@/app/components/LoremText";
 
 export default async function Page({ params }: { params: { pages: string } }) {
     const slug = params.pages;
@@ -30,7 +26,7 @@ export default async function Page({ params }: { params: { pages: string } }) {
     const pageNamespace = pageKey;
 
     // Динамически загружаем компонент на основе page_namespace
-    let DynamicComponent: React.FC<{ page_namespace: string }>;
+    let DynamicComponent: React.FC<{ namespace: string }>;
 
     try {
         DynamicComponent = (await import(`@/app/[pages]/pages/${pageNamespace}`)).default;
@@ -42,8 +38,7 @@ export default async function Page({ params }: { params: { pages: string } }) {
     return (
         <FadeWrapper>
             <div className="flex flex-col min-h-svh">
-                <DynamicComponent page_namespace={pageNamespace} />
-
+                <DynamicComponent namespace={pageNamespace} />
             </div>
         </FadeWrapper>
     );

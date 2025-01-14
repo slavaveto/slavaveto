@@ -6,8 +6,8 @@ import classNames from "classnames";
 interface CustomAlertProps {
     color?: "danger" | "default" | "primary" | "secondary" | "success" | "warning";
     showIcon?: boolean;
-    title: string;
-    description: string;
+    title?: string | React.ReactNode;
+    description?: string | React.ReactNode;
     children?: React.ReactNode;
 }
 
@@ -52,17 +52,15 @@ const CustomAlert: React.FC<CustomAlertProps> = ({
                     "py-[10px] px-[10px]",
                     "rounded-small"
                 ),
-
-                mainWrapper: "pt-[8px] text-medium pb-[8px] leading-[1.25] min-h-0",
+                mainWrapper: "pt-[7px] text-medium pb-[8px] leading-[1.25] min-h-0",
                 iconWrapper: showIcon ? "dark:bg-transparent" : "hidden",
                 description: "pt-[15px]",
             }}
-            //style={{ zIndex: 0 }}
             color={color}
+            //@ts-ignore
             title={title}
             description={description}
             variant="faded"
-
         >
             {children}
         </Alert>

@@ -9,7 +9,7 @@ export default function Footer ({ width }: { width: string }) {
     //console.log(width);
 
     return (
-        <footer className="footer_bg flex --h-[65px] pt-[15px] pb-[18px] mt-[40px] items-center ">
+        <footer className="footer_bg flex --h-[65px] pt-[10px] pb-[15px] md:pt-[15px] md:pb-[18px] mt-[35px] items-center ">
             <div className="container flex mx-auto px-3 -justify-between justify-end items-center"
                  style={{ maxWidth: `${width}px`}}>
                 {/*<div>*/}

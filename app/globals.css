@@ -10,9 +10,13 @@
   }
 }
 
+
+
 .some_rich_text p {margin-bottom: 8px}
 
-
+strong {
+  font-weight: 500!important; /* Medium */
+}
 
 
 

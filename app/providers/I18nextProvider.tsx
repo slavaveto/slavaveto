@@ -2,11 +2,7 @@
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-
-import homeTranslations from "@/app/assets/locales/home";
-
-import {supabase} from "@/app/assets/supabaseClient";
-
+import { supabase } from "@/app/assets/supabaseClient";
 
 // Поддерживаемые языки
 const supportedLanguages = ['ru', 'uk']; // Русский и Украинский
@@ -26,36 +22,39 @@ const deviceLanguage = getDeviceLanguage();
 const defaultLanguage =
     deviceLanguage && supportedLanguages.includes(deviceLanguage) ? deviceLanguage : 'ru';
 
-
-
 // Функция для загрузки переводов из базы данных
 const loadTranslationsFromDatabase = async () => {
-    const { data, error } = await supabase
-        .from('home') // Название таблицы с переводами
-        .select('*');
+    const tables = ['home', 'misc', 'about', 'request', 'message',
+        'tg4gt', 'supervision', 'support_ua' , 'error']; // Таблицы с переводами
+    const translations: any = {};
 
-    if (error) {
-        console.error('Error loading translations:', error.message);
-        return {}; // Возвращаем пустой объект в случае ошибки
+    try {
+        for (const table of tables) {
+            const { data, error } = await supabase.from(table).select('*');
+
+            if (error) {
+                console.error(`Error loading translations from ${table}:`, error.message);
+                continue; // Переходим к следующей таблице, если произошла ошибка
+            }
+
+            supportedLanguages.forEach((lang) => {
+                if (!translations[lang]) translations[lang] = {};
+                translations[lang][table] = (data || []).reduce((acc: any, row: any) => {
+                    if (row.item_id && row[lang]) {
+                        acc[row.item_id] = row[lang];
+                    }
+                    return acc;
+                }, {});
+            });
+        }
+    } catch (error) {
+        console.error('Error loading translations:', error);
     }
-
-    // Преобразуем данные в нужный формат
-    const translations = supportedLanguages.reduce((acc: any, lang: string) => {
-        acc[lang] = {
-            home: data.reduce((langAcc: any, row: any) => {
-                langAcc[row.item_id] = row[lang]; // Используем язык как ключ
-                return langAcc;
-            }, {}),
-        };
-        return acc;
-    }, {});
 
     return translations; // Возвращаем переводы
 };
 
-
-
-/// Инициализация i18n
+// Инициализация i18n
 const initI18n = async () => {
     const resources = await loadTranslationsFromDatabase();
 
@@ -65,10 +64,14 @@ const initI18n = async () => {
             resources, // Используем переводы из базы
             lng: defaultLanguage,
             fallbackLng: 'ru',
+            // ns: ['home', 'about', 'misc'], // Добавьте все используемые namespaces
+            // defaultNS: 'home', // Установите namespace по умолчанию
             interpolation: {
                 escapeValue: false,
             },
         });
+    // Выводим ресурсы в консоль
+    //console.log("i18n Resources:", resources);
 };
 
 // Запускаем инициализацию
