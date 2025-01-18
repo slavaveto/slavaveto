@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: { pages: string } }) {
 
     if (error) {
         console.error('Ошибка загрузки page_key:', error);
-        redirect('/error-page');
+        redirect('/error_page');
     }
 
     const pageKey = data?.page_key;
@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: { pages: string } }) {
         DynamicComponent = (await import(`@/app/[pages]/pages/${pageNamespace}`)).default;
     } catch (err) {
         console.error(`Ошибка загрузки компонента для ${pageNamespace}:`, err);
-        redirect('/error-page'); // Перенаправляем на страницу ошибки
+        redirect('/error_page'); // Перенаправляем на страницу ошибки
     }
 
     return (
