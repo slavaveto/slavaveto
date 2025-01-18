@@ -22,10 +22,13 @@ export default function DataLoader({ onLoadAction, isFirstLoad }: DataLoaderProp
                 // Запрос к базе данных
                 const { data, error } = await supabase
                     .from('_pages')
-                    .select('slug, page_key, order')
+                    .select('slug, page_key, order, btn_type, is_hidden')
                     .order('order', { ascending: true });
 
                 if (error) throw error;
+
+                // Фильтруем записи, исключая те, где is_hidden === true
+                const visiblePages = data.filter((page) => !page.is_hidden);
 
                 const elapsedTime = Date.now() - startTime;
                 //console.log("date", elapsedTime)
@@ -46,11 +49,18 @@ export default function DataLoader({ onLoadAction, isFirstLoad }: DataLoaderProp
                 // console.log("date", elapsedTime2)
 
 
-                // Передаём данные родительскому компоненту напрямую
+
+
+                // Передаём отфильтрованные данные родительскому компоненту
                 onLoadAction(
-                    data.map(({ slug, page_key }) => ({ slug, page_key })), // Отфильтрованные данные
+                    visiblePages.map(({ slug, page_key, btn_type }) => ({
+                        slug,
+                        page_key,
+                        btn_type,
+                    })), // Только нужные поля
                     true
                 );
+
             } catch (err) {
                 console.error('Ошибка загрузки страниц:', err);
 
