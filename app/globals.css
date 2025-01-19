@@ -25,7 +25,7 @@
 
 .page-transition-fadein {
   opacity: 0;
-  transform: translateY(10px); /* Без сдвига при fade-in */
+  transform: translateY(0px); /* Без сдвига при fade-in */
 }
 
 

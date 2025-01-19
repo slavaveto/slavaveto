@@ -11,6 +11,11 @@ let isFirstLoad = true;
 
 export default function Page({namespace}: { namespace: string }) {
 
+    // Прокрутка страницы вверх при каждой загрузке
+    useEffect(() => {
+        window.scrollTo(0, 0); // Прокрутка страницы вверх
+    }, []);
+
     const {
         isInternalTransition, hasCheckedTransition, animationReady, isExiting, showSpinner, handleNavigation
     } = usePageTransition(isFirstLoad, () => {

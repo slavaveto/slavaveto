@@ -9,7 +9,6 @@ import {TbArrowBackUp} from "react-icons/tb";
 import Link from "next/link";
 import LocalText from "@/app/assets/localText";
 
-
 const isEmailSendingEnabled = false;
 const isTestData = true
 const istError = false
@@ -47,7 +46,6 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
         message: isTestData ? testMessage : "",
     });
 
-
     const [errors, setErrors] = useState({
         name: false,
         email: false,
@@ -70,8 +68,6 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
         !formData.telegram.trim() &&
         !formData.message.trim()
     // (isMessageRequired && !formData.message.trim());
-
-
 
     const handleReset = () => {
         setFormData({...initialFormData}); // Восстанавливаем данные формы
@@ -262,7 +258,6 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
                                         <LocalText text={"form_before"} ns={`${namespace}`}/>
                                     </div>
 
-
                                 </CustomAlert>
                             </div>
 
@@ -307,6 +302,7 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
+
                                 {suggestions.length > 0 && (
                                     <div
                                         ref={suggestionsRef}
@@ -360,7 +356,6 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
                                 </span>
                                 }
 
-
                                 name="message"
                                 size="sm"
                                 value={formData.message}
@@ -374,7 +369,8 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
                                 isLoading={isLoading}
                                 className="rounded-small"
                             >
-                                {isLoading ? <LocalText text={"form_sending"} ns={`misc`}/> : <LocalText text={"form_send"} ns={`misc`}/>}
+                                {isLoading ? <LocalText text={"form_sending"} ns={`misc`}/> :
+                                    <LocalText text={"form_send"} ns={`misc`}/>}
                             </Button>
                         </motion.div>
                     ) : (
@@ -391,7 +387,7 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
                                     <CustomAlert
                                         color="danger"
                                         showIcon={true}
-                                        title = {<LocalText text={"form_error_title"} ns={`misc`}/>}
+                                        title={<LocalText text={"form_error_title"} ns={`misc`}/>}
                                         description=""
                                     >
                                         <div
@@ -402,7 +398,8 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
                                                 handleReset(); // Вызываем функцию сброса формы
                                             }}
                                         ><TbArrowBackUp size={24} className=""/> <span
-                                            className="pl-4 text-[14px]">{<LocalText text={"form_error_text"} ns={`misc`}/>}</span>
+                                            className="pl-4 text-[14px]">{<LocalText text={"form_error_text"}
+                                                                                     ns={`misc`}/>}</span>
                                         </div>
 
                                     </CustomAlert>

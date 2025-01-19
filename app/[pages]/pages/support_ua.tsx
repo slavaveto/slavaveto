@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useState, useCallback, useEffect} from 'react';
 import {Spinner} from "@nextui-org/react";
 
 import Footer from "@/app/components/Footer";
@@ -11,6 +11,11 @@ import usePageTransition from "@/app/assets/usePageTransition";
 let isFirstLoad = true;
 
 export default function Page({namespace}: { namespace: string }) {
+
+    // Прокрутка страницы вверх при каждой загрузке
+    useEffect(() => {
+        window.scrollTo(0, 0); // Прокрутка страницы вверх
+    }, []);
 
     const {
         isInternalTransition, hasCheckedTransition, animationReady, isExiting, showSpinner, handleNavigation

@@ -89,20 +89,20 @@ export default function Home() {
                             Stand with<img src="ua_flag.png" className="w-5 mx-2 rounded-[3px]"/>Ukraine
                         </Link>
 
-                        <Link
-                            onClick={(e) => {
-                                e.preventDefault(); // Предотвращаем стандартное поведение ссылки
-                                handleNavigation(`/error_page`); // Вызываем fade-out и навигацию
-                            }}
-                            href={`/error_page`} // Для SEO и правого клика на ссылке
-                            style={{
-                                cursor: 'pointer',
-                                // textDecoration: 'none',
-                                // color: 'inherit',
-                            }}
-                        >
-                            error_page
-                        </Link>
+                        {/*<Link*/}
+                        {/*    onClick={(e) => {*/}
+                        {/*        e.preventDefault(); // Предотвращаем стандартное поведение ссылки*/}
+                        {/*        handleNavigation(`/message`); // Вызываем fade-out и навигацию*/}
+                        {/*    }}*/}
+                        {/*    href={`/message`} // Для SEO и правого клика на ссылке*/}
+                        {/*    style={{*/}
+                        {/*        cursor: 'pointer',*/}
+                        {/*        // textDecoration: 'none',*/}
+                        {/*        // color: 'inherit',*/}
+                        {/*    }}*/}
+                        {/*>*/}
+                        {/*    error_page*/}
+                        {/*</Link>*/}
 
                         <div className="flex flex-col gap-[20px] pt-0">
                             <Avatar/>

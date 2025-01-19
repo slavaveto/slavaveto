@@ -3,14 +3,22 @@ import React from "react";
 import Link from "next/link";
 import {TbArrowBackUp} from "react-icons/tb";
 import LocalText from "@/app/assets/localText";
+import {Tab, Tabs} from "@nextui-org/react";
 
 interface HeaderProps {
     width: string;
     namespace?: string;
     onNavigateAction: (href: string) => void; // Новый проп для обработки переходов
+    activeTab?: string;
+    setActiveTab?: (key: string) => void;
 }
 
-export default function Header({width, namespace, onNavigateAction}: HeaderProps) {
+export default function Header({width, namespace, activeTab, setActiveTab, onNavigateAction}: HeaderProps) {
+
+    // Проверяем, нужно ли рендерить вкладки
+    const shouldRenderTabs = !activeTab || !setActiveTab;
+
+
     return (
         <header className="-footer_bg -opacity-90 backdrop-blur-xl mb-[20px]"
                 style={{
@@ -58,6 +66,31 @@ export default function Header({width, namespace, onNavigateAction}: HeaderProps
                 {/*        <LocalText text={"page_title"} ns={`${namespace}`}/>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
+
+                {!shouldRenderTabs && ( // Условно рендерим вкладки только если disableAllTabs === false
+                    <Tabs
+                        fullWidth
+                        color="default"
+                        aria-label="Tabs variants"
+                        variant="underlined"
+                        selectedKey={activeTab} // Передаем текущее значение из основного компонента
+                        onSelectionChange={(key) => setActiveTab(key as string)} // Изменяем активную вкладку
+                        classNames={{
+                            tabList: "flex w-full mb-[5px] px-0 gap-3 mx-0 p-0 pb-[1px] pt-0 justify-between ",
+                            tab: "w-full py-[20px] m-0 border-b border-divider pb-[25px] md:pb-[25px]",
+                            cursor: "w-full  bg-primary -mb-[2px] h-[2px]",
+                        }}
+                        style={{
+                            position: "sticky",
+                            top: 0,
+                        }}
+                    >
+
+                        <Tab key="description" title={<LocalText text={"tab1_title"} ns={`${namespace}`}/>}/>
+                        <Tab key="i_want" title={<LocalText text={"tab2_title"} ns={`${namespace}`}/>}/>
+                        <Tab key="payment" title={<LocalText text={"tab3_title"} ns={`${namespace}`}/>}/>
+                    </Tabs>
+                )}
 
             </div>
         </header>
