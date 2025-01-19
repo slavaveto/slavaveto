@@ -25,12 +25,11 @@ let isFirstLoad = true;
 export default function Home() {
 
     const router = useRouter();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     const [isDataLoading, setIsDataLoading] = useState(true);
 
-
-    const { isInternalTransition, hasCheckedTransition, isExiting, showSpinner, handleNavigation } =
+    const {isInternalTransition, hasCheckedTransition, isExiting, showSpinner, handleNavigation} =
         usePageTransition(false, () => {
         });
 
@@ -49,12 +48,10 @@ export default function Home() {
         }
     }, [isDataLoading]);
 
-
     return (
 
         <>
             <DataLoader onLoadAction={handleDataLoad} isFirstLoad={isFirstLoad}/>
-
 
             {isDataLoading && isFirstLoad && (
                 <div
@@ -90,6 +87,21 @@ export default function Home() {
 
                         >
                             Stand with<img src="ua_flag.png" className="w-5 mx-2 rounded-[3px]"/>Ukraine
+                        </Link>
+
+                        <Link
+                            onClick={(e) => {
+                                e.preventDefault(); // Предотвращаем стандартное поведение ссылки
+                                handleNavigation(`/error_page`); // Вызываем fade-out и навигацию
+                            }}
+                            href={`/error_page`} // Для SEO и правого клика на ссылке
+                            style={{
+                                cursor: 'pointer',
+                                // textDecoration: 'none',
+                                // color: 'inherit',
+                            }}
+                        >
+                            error_page
                         </Link>
 
                         <div className="flex flex-col gap-[20px] pt-0">
@@ -152,10 +164,10 @@ export default function Home() {
                     </main>
                     <Footer width="500"/>
                 </div>
-                </div>
+            </div>
 
-            </>
+        </>
 
-            );
+    );
 
-            }
+}
