@@ -13,16 +13,16 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
-      '@typescript-eslint/no-unused-vars': ['warn', { vars: 'all', args: 'none', ignoreRestSiblings: true }],
-      // 'no-unused-vars': [
-      //   'warn',
-      //   {
-      //     vars: 'all', // Проверять все переменные
-      //     args: 'after-used', // Проверять аргументы, которые не используются
-      //     ignoreRestSiblings: true, // Игнорировать rest-операторы
-      //
-      //   },
-      // ],
+      // '@typescript-eslint/no-unused-vars': ['warn', { vars: 'all', args: 'none', ignoreRestSiblings: true }],
+      'no-unused-vars': [
+        'warn',
+        {
+          vars: 'all', // Проверять все переменные
+          args: 'after-used', // Проверять аргументы, которые не используются
+          ignoreRestSiblings: true, // Игнорировать rest-операторы
+
+        },
+      ],
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/ban-ts-comment": "off"
     },
