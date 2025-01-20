@@ -22,16 +22,16 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
                         <img
                             src="/me.png"
                             alt="Описание изображения"
-                            loading="lazy"
-                            className="block dark:hidden w-full h-auto rounded-full -rounded-small bg-default-300"
+                            loading="eager"
+                            className="block dark:hidden  -w-full h-auto rounded-full -rounded-small bg-default-300"
                         />
                         <img
                             src="/me_dark.png"
                             alt="Описание изображения"
-                            loading="lazy"
+                            loading="eager"
                             className="hidden dark:block w-full h-auto rounded-full  -rounded-small bg-default-300"
                         />
-                        <div className={"text-center font-medium text-[14px]"}>
+                        <div className={"text-center font-medium text-[14px] mt-[5px]"}>
                             <LocalText text={"trainer_l"} ns={`supervision`}/>
                         </div>
                     </div>
@@ -50,17 +50,23 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
                     </div>
 
                     <div className="w-[24%] xs390:w-[24%] -xs414:w-[26%] pointer-events-none">
-                        <img
+                        <Image
                             src="/kate.jpg"
                             alt="Описание изображения"
+                            layout="responsive"
+                            width={100} // Пропорции, не конкретная ширина
+                            height={100} // Пропорции, не конкретная высота
                             className="block dark:hidden brightness-105 w-full h-auto rounded-full -rounded-small"
                         />
-                        <img
+                        <Image
                             src="/kate_dark.jpg"
                             alt="Описание изображения"
+                            layout="responsive"
+                            width={100} // Пропорции, не конкретная ширина
+                            height={100} // Пропорции, не конкретная высота
                             className="hidden dark:block w-full h-auto rounded-full -rounded-small"
                         />
-                        <div className={"text-center font-medium text-[14px]"}>
+                        <div className={"text-center font-medium text-[14px] mt-[5px]"}>
                             <LocalText text={"trainer_r"} ns={`supervision`}/>
                         </div>
                     </div>
