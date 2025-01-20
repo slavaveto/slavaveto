@@ -8,7 +8,7 @@ interface PageProps {
     };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: Awaited<PageProps>) {
     const slug = params.pages;
 
     // Начало измерения времени
