@@ -20,10 +20,7 @@ export default async function Page({ params }: { params: { pages: string } }) {
         redirect('/error_page');
     }
 
-    const pageKey = data?.page_key;
-    //const pageNamespace = pageKey.split('_')[1]; // Извлекаем пространство имен
-
-    const pageNamespace = pageKey;
+    const pageNamespace = data.page_key;
 
     const elapsedTime = Date.now() - startTime;
     const delay = Math.max(10 - elapsedTime, 0); // Минимальная задержка в 500 мс
