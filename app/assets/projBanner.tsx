@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import LocalText from "@/app/assets/localText";
 import Image from 'next/image';
