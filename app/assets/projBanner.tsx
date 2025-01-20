@@ -56,6 +56,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
                             layout="responsive"
                             width={100} // Пропорции, не конкретная ширина
                             height={100} // Пропорции, не конкретная высота
+                            priority // Флаг для прелоадинга
                             className="block dark:hidden brightness-105 w-full h-auto rounded-full -rounded-small"
                         />
                         <Image
@@ -64,6 +65,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
                             layout="responsive"
                             width={100} // Пропорции, не конкретная ширина
                             height={100} // Пропорции, не конкретная высота
+                            priority // Флаг для прелоадинга
                             className="hidden dark:block w-full h-auto rounded-full -rounded-small"
                         />
                         <div className={"text-center font-medium text-[14px] mt-[5px]"}>
