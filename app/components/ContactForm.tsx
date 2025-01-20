@@ -12,8 +12,8 @@ import ReturnHome from "@/app/assets/returnHome";
 import SaveData from '@/app/assets/dataSaver';
 
 
-const isEmailSendingEnabled = false;
-const isTestData = true
+const isEmailSendingEnabled = true;
+const isTestData = false
 const istError = false
 
 interface ContactFormProps {

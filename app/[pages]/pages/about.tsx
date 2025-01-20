@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import {Spinner} from "@nextui-org/react";
