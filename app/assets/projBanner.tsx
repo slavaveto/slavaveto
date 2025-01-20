@@ -19,16 +19,22 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
             >
 
                     <div className="w-[24%] xs390:w-[24%] -xs414:w-[26%] pointer-events-none">
-                        <img
+                        <Image
                             src="/me.png"
                             alt="Описание изображения"
-                            loading="eager"
+                            layout="responsive"
+                            width={100} // Пропорции, не конкретная ширина
+                            height={100} // Пропорции, не конкретная высота
+                            priority // Флаг для прелоадинга
                             className="block dark:hidden  -w-full h-auto rounded-full -rounded-small bg-default-300"
                         />
-                        <img
+                        <Image
                             src="/me_dark.png"
                             alt="Описание изображения"
-                            loading="eager"
+                            layout="responsive"
+                            width={100} // Пропорции, не конкретная ширина
+                            height={100} // Пропорции, не конкретная высота
+                            priority // Флаг для прелоадинга
                             className="hidden dark:block w-full h-auto rounded-full  -rounded-small bg-default-300"
                         />
                         <div className={"text-center font-medium text-[14px] mt-[5px]"}>
