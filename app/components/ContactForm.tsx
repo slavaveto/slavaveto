@@ -8,6 +8,9 @@ import CustomAlert from "@/app/components/CustomAlert";
 import {TbArrowBackUp} from "react-icons/tb";
 import Link from "next/link";
 import LocalText from "@/app/assets/localText";
+import ReturnHome from "@/app/assets/returnHome";
+import SaveData from '@/app/assets/dataSaver';
+
 
 const isEmailSendingEnabled = false;
 const isTestData = true
@@ -16,10 +19,16 @@ const istError = false
 interface ContactFormProps {
     isMessageRequired?: boolean; // Если это свойство необязательное
     namespace?: string; // Добавлено: URL текущей страницы
+    onNavigateAction: (href: string) => void; // Новый проп для обработки переходов
     onSubmitSuccess?: () => void;
 }
 
-export default function ContactForm({isMessageRequired, namespace, onSubmitSuccess,}: ContactFormProps) {
+export default function ContactForm({
+                                        isMessageRequired,
+                                        namespace,
+                                        onNavigateAction,
+                                        onSubmitSuccess,
+                                    }: ContactFormProps) {
 
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
@@ -114,6 +123,35 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
             validateEmail(formData.email)
         ) {
             setIsLoading(true);
+
+            // Устанавливаем данные для сохранения
+            const saveData = {
+                name: formData.name,
+                email: formData.email,
+                telegram: formData.telegram,
+                message: formData.message,
+                page: namespace,
+            };
+
+            // return (
+            //     <SaveData
+            //         tableName="_contacts"
+            //         data={saveData}
+            //         onSuccess={() => {
+            //             setIsSubmitted(true);
+            //             setFormData({
+            //                 name: "",
+            //                 email: "",
+            //                 telegram: "",
+            //                 message: "",
+            //             });
+            //             console.log('Данные успешно сохранены.');
+            //         }}
+            //         onError={(error) => {
+            //             console.error('Ошибка сохранения данных:', error);
+            //         }}
+            //     />
+            // );
 
             try {
 
@@ -414,6 +452,27 @@ export default function ContactForm({isMessageRequired, namespace, onSubmitSucce
                                         <div className="text-foreground">
                                             <LocalText text={"form_after_text"} ns={`${namespace}`}/>
                                         </div>
+
+                                        {(namespace === "message" || namespace === "request") && (
+                                            <div className="flex w-full pt-[30px]">
+                                                <Link
+                                                    className="flex flex-row text-primary-500 hover:text-primary-400 transition items-center"
+                                                    href="/"
+                                                    onClick={(e) => {
+                                                        if (onNavigateAction) {
+                                                            e.preventDefault(); // Предотвращаем стандартное поведение
+                                                            onNavigateAction("/"); // Вызываем переданный обработчик
+                                                        }
+                                                    }}
+                                                >
+                                                    <TbArrowBackUp size={24} className=""/>
+                                                    <span className="pl-4 text-[14px]">
+                                                <LocalText text="return_home" ns="misc"/>
+                                                </span>
+                                                </Link>
+                                            </div>
+                                        )}
+
                                     </CustomAlert>
                                 )}
                             </div>

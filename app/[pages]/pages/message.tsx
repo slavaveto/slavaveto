@@ -47,6 +47,7 @@ export default function Page({namespace}: { namespace: string }) {
                         <ContactForm
                             isMessageRequired={isMessageRequired}
                             namespace={namespace}
+                            onNavigateAction={handleNavigation}
                             onSubmitSuccess={() => {
                             }}/>
 

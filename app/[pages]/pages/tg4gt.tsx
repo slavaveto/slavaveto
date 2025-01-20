@@ -63,6 +63,7 @@ export default function Page({namespace}: { namespace: string }) {
                                 <ContactForm
                                     isMessageRequired={isMessageRequired}
                                     namespace={namespace}
+                                    onNavigateAction={handleNavigation}
                                     onSubmitSuccess={() => {
                                     }}/>
 
@@ -71,7 +72,9 @@ export default function Page({namespace}: { namespace: string }) {
 
                         {activeTab === "payment" && (
                             <div>
-                                <LoremText paragraphs={6}/>
+                                <LocalText text={"tab3_content"} ns={`${namespace}`}/>
+
+                                {/*<LoremText paragraphs={6}/>*/}
                             </div>
                         )}
 
