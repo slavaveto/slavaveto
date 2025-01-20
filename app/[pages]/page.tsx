@@ -4,13 +4,14 @@ import { redirect } from "next/navigation";
 
 // Интерфейс для типа параметров страницы
 interface PageProps {
-    params: {
+    params: Promise<{
         pages: string; // Динамический сегмент URL
-    };
+    }>;
 }
 
-export default async function Page({ params }: PageProps) {
-    const slug = params.pages;
+export default async function Page({ params }: Awaited<PageProps>) {
+    const resolvedParams = await params;
+    const slug = resolvedParams.pages;
 
     try {
         // Запрашиваем данные из базы данных

@@ -33,7 +33,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
 
                     <div className="flex flex-col w-[52%] -xs414:w-[48%] -flex-grow -justify-center -pt-[15px] text-center pointer-events-none ">
 
-                        <div className={"text-danger font-medium text-[18px] -xs390:text-[20px] sm:text-[20px]"}
+                        <div className={"text-danger -font-medium text-[18px] -xs390:text-[20px] sm:text-[22px]"}
                         >
                             <LocalText text={"banner_title"} ns={`supervision`}/>
                         </div>
@@ -97,7 +97,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
 
                 <div className="flex flex-col flex-grow -w-[74%] -xs414:w-[72%]  -flex-grow -justify-center -pt-[15px] text-center pointer-events-none ">
 
-                    <div className={"text-danger font-medium text-[18px] -xs390:text-[20px] sm:text-[20px]"}
+                    <div className={"text-danger -font-medium text-[18px] -xs390:text-[20px] sm:text-[22px]"}
                     >
                         <LocalText text={"banner_title"} ns={`tg4gt`}/>
                     </div>
