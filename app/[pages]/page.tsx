@@ -11,30 +11,32 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
     const slug = params.pages;
 
+    // Начало измерения времени
     const startTime = Date.now();
 
-    // Получаем данные из базы данных
+    // Запрос к базе данных
     const { data, error } = await supabase
-        .from("_pages") // Имя вашей таблицы
-        .select("page_key") // Указываем столбец, который нам нужен
-        .eq("slug", slug) // Фильтруем по slug
-        .single(); // Ожидаем одну запись
+        .from("_pages")
+        .select("page_key")
+        .eq("slug", slug)
+        .single();
 
-    if (error || !data) {
-        console.error("Ошибка загрузки page_key:", error);
-        redirect("/error_page"); // Перенаправляем на страницу ошибки
+    if (error || !data?.page_key) {
+        console.error("Ошибка загрузки или отсутствует page_key:", error);
+        redirect("/error_page");
     }
 
     const pageKey = data.page_key;
-    const pageNamespace = pageKey; // Здесь вы можете использовать логику извлечения пространства имен, если нужно
+    const pageNamespace = pageKey;
 
+    // Минимальная задержка в 500 мс
     const elapsedTime = Date.now() - startTime;
-    const delay = Math.max(500 - elapsedTime, 0); // Минимальная задержка в 500 мс
+    const delay = Math.max(500 - elapsedTime, 0);
     if (delay > 0) {
         await new Promise((resolve) => setTimeout(resolve, delay));
     }
 
-    // Динамически загружаем компонент на основе pageNamespace
+    // Динамическая загрузка компонента
     let DynamicComponent: React.FC<{ namespace: string }> | null = null;
 
     try {
@@ -42,13 +44,14 @@ export default async function Page({ params }: PageProps) {
         DynamicComponent = componentModule.default;
     } catch (err) {
         console.error(`Ошибка загрузки компонента для ${pageNamespace}:`, err);
-        redirect("/error_page"); // Перенаправляем на страницу ошибки
+        redirect("/error_page");
     }
 
     if (!DynamicComponent) {
-        redirect("/error_page"); // Если компонент не загрузился, перенаправляем
+        redirect("/error_page");
     }
 
+    // Рендер загруженного компонента
     return (
         <>
             <DynamicComponent namespace={pageNamespace} />
