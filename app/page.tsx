@@ -22,7 +22,7 @@ import YouTubeEmbed from "@/app/assets/youtubeEmbed";
 
 import LocalText from "@/app/assets/localText";
 import {useTranslation} from 'react-i18next';
-import ProjBanner from "@/app/[pages]/components/projBanner";
+import ProjBanner from "@/app/assets/projBanner";
 
 let isFirstLoad = true;
 

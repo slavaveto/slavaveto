@@ -1,5 +1,6 @@
 import React from "react";
 import LocalText from "@/app/assets/localText";
+import Image from 'next/image';
 
 const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
 
@@ -19,11 +20,13 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
                         <img
                             src="/me.png"
                             alt="Описание изображения"
+                            loading="lazy"
                             className="block dark:hidden w-full h-auto rounded-full -rounded-small bg-default-300"
                         />
                         <img
                             src="/me_dark.png"
                             alt="Описание изображения"
+                            loading="lazy"
                             className="hidden dark:block w-full h-auto rounded-full  -rounded-small bg-default-300"
                         />
                         <div className={"text-center font-medium text-[14px]"}>
