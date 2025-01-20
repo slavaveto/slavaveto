@@ -52,7 +52,7 @@ const CustomAlert: React.FC<CustomAlertProps> = ({
                     "py-[10px] px-[10px]",
                     "rounded-small"
                 ),
-                mainWrapper: "pt-[7px] text-medium pb-[8px] leading-[1.25] min-h-0",
+                mainWrapper: "pt-[7px] text-medium pb-[8px] leading-[1.2] min-h-0",
                 iconWrapper: showIcon ? "dark:bg-transparent" : "hidden",
                 description: "pt-[15px]",
             }}

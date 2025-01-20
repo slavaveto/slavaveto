@@ -28,9 +28,7 @@ export default function Error({namespace}: { namespace: string }) {
     return (
         <>
             {showSpinner && (
-                <div
-                    className="fixed inset-0 flex justify-center items-center h-screen
-                        translate-y-[-5vh] xs450:translate-y-[-5vh]">
+                <div className="spinner">
                     <Spinner/>
                 </div>
             )}
@@ -47,8 +45,8 @@ export default function Error({namespace}: { namespace: string }) {
                     <main className="flex-grow container mx-auto px-3"
                           style={{maxWidth: '500px'}}>
 
-                        <div className=" fixed inset-0 flex items-center -justify-center mx-auto px-3
-        translate-y-[-10%] xs450:translate-y-[-10%]"
+                        <div className=" fixed inset-0 flex items-center
+                        -justify-center mx-auto px-3 translate-y-[-10%]"
                              style={{maxWidth: '550px',}}>
 
                             <CustomAlert

@@ -4,17 +4,22 @@ import { useTranslation } from "react-i18next";
 interface LocalTextProps {
     text: string; // Используется для сложного текста
     ns: string;
+    lh?: string;
 }
 
-const LocalText: React.FC<LocalTextProps> = ({ text, ns }) => {
+const LocalText: React.FC<LocalTextProps> = ({ text, ns, lh }) => {
     const { t } = useTranslation();
     const translatedText = t(text, { ns });
     const isRich = isRichText(translatedText);
 
+    const lineHeight = lh || "1.2";
 
     if (isRich) {
         // Если текст содержит HTML
-        return <span className="some_rich_text" dangerouslySetInnerHTML={{__html: translatedText}} />;
+        return <span
+            className="some_rich_text"
+            style={{lineHeight}}
+            dangerouslySetInnerHTML={{__html: translatedText}} />;
     }
 
     // Если текст — просто строка

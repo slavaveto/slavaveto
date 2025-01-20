@@ -1,19 +1,18 @@
 "use client";
 
-import { Tabs, Tab } from "@nextui-org/react";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import {Tabs, Tab} from "@nextui-org/react";
+import {useTranslation} from "react-i18next";
+import React, {useEffect} from "react";
+import {DarkThemeIcon} from "@/app/assets/svgIcons";
 
 export default function LangToggle() {
-    const { i18n } = useTranslation(); // Получаем экземпляр i18next
-
+    const {i18n} = useTranslation(); // Получаем экземпляр i18next
 
     // Функция для смены языка
     const handleLanguageChange = (key: string) => {
         i18n.changeLanguage(key); // Меняем язык
         localStorage.setItem("language", key); // Сохраняем выбор пользователя
     };
-
 
     // Проверяем сохранённый язык при загрузке компонента
     useEffect(() => {
@@ -37,10 +36,21 @@ export default function LangToggle() {
                 tabContent: " group-data-[selected=true]:text-primary-400",
             }}
 
-
         >
-            <Tab key="ru" title="RU" className="font-semibold text-[13px]" ></Tab>
-            <Tab key="uk" title="UA" className="font-semibold text-[13px]"></Tab>
+            <Tab key="ru" className="font-semibold text-[13px]"
+                 title={
+                     <div className="flex items-center mt-[2px]">
+                         RU
+                     </div>
+                 }
+            />
+            <Tab key="uk"  className="font-semibold text-[13px]"
+                 title={
+                     <div className="flex items-center mt-[2px]">
+                         UA
+                     </div>
+                 }
+            />
         </Tabs>
     );
 }

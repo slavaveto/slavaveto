@@ -19,6 +19,7 @@ import YouTubeEmbed from "@/app/assets/youtubeEmbed";
 
 import LocalText from "@/app/assets/localText";
 import {useTranslation} from 'react-i18next';
+import ProjBanner from "@/app/[pages]/components/projBanner";
 
 let isFirstLoad = true;
 
@@ -54,9 +55,7 @@ export default function Home() {
             <DataLoader onLoadAction={handleDataLoad} isFirstLoad={isFirstLoad}/>
 
             {isDataLoading && isFirstLoad && (
-                <div
-                    className="fixed inset-0 flex justify-center items-center h-screen
-                        translate-y-[-5vh] xs450:translate-y-[-5vh]">
+                <div className="spinner">
                     <Spinner/>
                 </div>
             )}
@@ -92,9 +91,9 @@ export default function Home() {
                         {/*<Link*/}
                         {/*    onClick={(e) => {*/}
                         {/*        e.preventDefault(); // Предотвращаем стандартное поведение ссылки*/}
-                        {/*        handleNavigation(`/message`); // Вызываем fade-out и навигацию*/}
+                        {/*        handleNavigation(`/error_page`); // Вызываем fade-out и навигацию*/}
                         {/*    }}*/}
-                        {/*    href={`/message`} // Для SEO и правого клика на ссылке*/}
+                        {/*    href={`/error_page`} // Для SEO и правого клика на ссылке*/}
                         {/*    style={{*/}
                         {/*        cursor: 'pointer',*/}
                         {/*        // textDecoration: 'none',*/}
@@ -110,11 +109,18 @@ export default function Home() {
 
                             {/*<YouTubeEmbed videoId="J5qxn8P6Hec" />*/}
 
+
+
+
                             {fetchPages.map(({slug, page_key, btn_type}) => (
 
+
                                 btn_type === 'image' ? (
+
+
                                     // Если btn_type === 'image', создаём ссылку в виде изображения
                                     <Link
+
                                         key={slug}
                                         onClick={(e) => {
                                             e.preventDefault(); // Предотвращаем стандартное поведение ссылки
@@ -127,19 +133,11 @@ export default function Home() {
                                             color: 'inherit',
                                         }}
                                     >
-                                        <img
-                                            // src={home(`${page_key}_btn`)} // Путь к изображению
-                                            src={t('home_btn', {ns: `${page_key}`})}
-                                            alt={`Изображение для ${page_key}`} // Альтернативный текст
-                                            className="block dark:hidden rounded-small hover:opacity-90 transition-opacity border-default -border-medium " // Стили
-                                            style={{cursor: 'pointer'}}
-                                        />
-                                        <img
-                                            src={t('home_btn_dark', {ns: `${page_key}`})}
-                                            alt={`Изображение для ${page_key}`} // Альтернативный текст
-                                            className="hidden dark:block rounded-small hover:opacity-90 transition-opacity -border-default -border-medium px-[1px]" // Стили
-                                            style={{cursor: 'pointer'}}
-                                        />
+
+                                        <ProjBanner pageKey={page_key}/>
+
+
+
                                     </Link>
 
                                 ) : (

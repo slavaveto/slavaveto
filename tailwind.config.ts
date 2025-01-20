@@ -32,10 +32,9 @@ export default {
       },
 
       screens: {
-        xs375: '376px', // Extra Small
-        xs390: '391px',
-        xs414: '415px',
-        xs450: '451px',
+        xs375: '375px', // Extra Small
+        xs390: '390px',
+        xs414: '414px',
       },
 
       maxWidth: {

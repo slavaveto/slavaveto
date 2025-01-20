@@ -20,9 +20,9 @@ export default function usePageTransition(
         const previousPath = sessionStorage.getItem('previousPath'); // Предыдущий путь из sessionStorage
         const wasInternal = sessionStorage.getItem('wasInternalTransition') === 'true'; // Был ли внутренний переход
 
-        console.log('currentPath:', currentPath);
-        console.log('previousPath:', previousPath);
-        console.log('wasInternal:', wasInternal);
+        //console.log('currentPath:', currentPath);
+        //console.log('previousPath:', previousPath);
+        //console.log('wasInternal:', wasInternal);
 
         if (!previousPath) {
             // Если предыдущий путь отсутствует, это внешняя загрузка
@@ -30,11 +30,11 @@ export default function usePageTransition(
             setIsInternalTransition(false);
         } else if (previousPath === currentPath && !wasInternal) {
             // Если пути совпадают и внутреннего перехода не было, это перезагрузка
-            console.log('Page was refreshed');
+            //console.log('Page was refreshed');
             setIsInternalTransition(false);
         } else {
             // Внутренний переход
-            console.log('Internal transition');
+            //console.log('Internal transition');
             setIsInternalTransition(true);
         }
 
@@ -53,7 +53,7 @@ export default function usePageTransition(
             sessionStorage.setItem('wasInternalTransition', 'true');
             setTimeout(() => {
                 router.push(href); // Переход на новую страницу
-            }, 500); // Длительность fade-out
+            }, 300); // Длительность fade-out
         },
         [router]
     );
