@@ -39,6 +39,29 @@
 }
 
 
+figure.image {
+  @apply !w-[30%] xs414:!w-[20%];
+}
+
+figure.image img {
+  padding-top: 0!important;
+  margin-top: 0!important; /* Если нужен также контроль отступов */
+  border-radius: 4px!important;
+  @apply bg-default-200 dark:bg-default-300
+  /*background-color: #f0f0f0; !* Цвет фона *!*/
+}
+
+.image-style-align-left {
+  float: left; /* Устанавливает обтекание текста слева */
+  margin-right: 1em; /* Отступ между изображением и текстом */
+  margin-bottom: 1em; /* Отступ снизу */
+}
+.image-style-align-right {
+  float: right; /* Устанавливает обтекание текста слева */
+  margin-left: 1em; /* Отступ между изображением и текстом */
+  margin-bottom: 1em; /* Отступ снизу */
+}
+
 
 .page-transition {
   opacity: 1;

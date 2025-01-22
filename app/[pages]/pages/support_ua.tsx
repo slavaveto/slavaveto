@@ -44,7 +44,7 @@ export default function Page({namespace}: { namespace: string }) {
                         <div className="flex flex-col">
                             <img width={150}
                                  className="rounded mb-[20px]"
-                                 src="/support_ua.jpg"
+                                 src="https://storage.googleapis.com/app_slavaveto/support_ua.jpg"
                             />
 
                             <LocalText text={"content"} ns={"support_ua"}/>

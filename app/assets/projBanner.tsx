@@ -20,7 +20,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
 
                     <div className="w-[24%] xs390:w-[24%] -xs414:w-[26%] pointer-events-none">
                         <Image
-                            src="/me.png"
+                            src="https://storage.googleapis.com/app_slavaveto/me_light.png"
                             alt="Описание изображения"
                             layout="responsive"
                             width={100} // Пропорции, не конкретная ширина
@@ -29,7 +29,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
                             className="block dark:hidden  -w-full h-auto rounded-full -rounded-small bg-default-300"
                         />
                         <Image
-                            src="/me_dark.png"
+                            src="https://storage.googleapis.com/app_slavaveto/me_dark.png"
                             alt="Описание изображения"
                             layout="responsive"
                             width={100} // Пропорции, не конкретная ширина
@@ -57,7 +57,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
 
                     <div className="w-[24%] xs390:w-[24%] -xs414:w-[26%] pointer-events-none">
                         <Image
-                            src="/kate.jpg"
+                            src="https://storage.googleapis.com/app_slavaveto/kate_light.jpg"
                             alt="Описание изображения"
                             layout="responsive"
                             width={100} // Пропорции, не конкретная ширина
@@ -66,7 +66,7 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
                             className="block dark:hidden brightness-105 w-full h-auto rounded-full -rounded-small"
                         />
                         <Image
-                            src="/kate_dark.jpg"
+                            src="https://storage.googleapis.com/app_slavaveto/kate_dark.jpg"
                             alt="Описание изображения"
                             layout="responsive"
                             width={100} // Пропорции, не конкретная ширина
@@ -100,17 +100,17 @@ const ProjBanner: React.FC<{ pageKey: string }> = ({pageKey}) => {
 
                 {/*<div className="w-[26%] xs390:w-[26%] xs414:w-[28%] pointer-events-none">*/}
                 {/*    <img*/}
-                {/*        src="/me.png"*/}
+                {/*        src="https://storage.googleapis.com/app_slavaveto/me_light.png"*/}
                 {/*        alt="Описание изображения"*/}
                 {/*        className="block dark:hidden w-full h-auto rounded-full -rounded-small bg-default-300"*/}
                 {/*    />*/}
                 {/*    <img*/}
-                {/*        src="/me_dark.png"*/}
+                {/*        src="https://storage.googleapis.com/app_slavaveto/me_dark.png"*/}
                 {/*        alt="Описание изображения"*/}
                 {/*        className="hidden dark:block w-full h-auto rounded-full  -rounded-small bg-default-300"*/}
                 {/*    />*/}
                 {/*    <div className={"text-center font-medium text-[14px]"}>*/}
-                {/*        /!*<LocalText text={"trainer"} ns={`tg4gt`}/>*!/*/}
+                {/*        <LocalText text={"trainer"} ns={`tg4gt`}/>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
 

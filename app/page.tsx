@@ -88,7 +88,9 @@ export default function Home() {
                             }}
 
                         >
-                            Stand with<img src="ua_flag.png" className="w-5 mx-2 rounded-[3px]"/>Ukraine
+                            Stand with<img
+                            src="https://storage.googleapis.com/app_slavaveto/ua_flag.png"
+                            className="w-5 mx-2 rounded-[3px]"/>Ukraine
                         </Link>
 
                         {/*<Link*/}

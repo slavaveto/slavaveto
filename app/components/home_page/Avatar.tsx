@@ -12,22 +12,22 @@ export default function Avatar() {
                 className="flex flex-row items-center justify-between -pr-[20px]  -xs390:gap-10"
             >
                 <Image
-                    src="/me.jpg"
+                    src="https://storage.googleapis.com/app_slavaveto/me_light.png"
                     alt="Описание изображения"
                     // layout="responsive"
                     width={120} // Пропорции, не конкретная ширина
                     height={120} // Пропорции, не конкретная высота
                     priority // Флаг для прелоадинга
-                    className="block dark:hidden w-[120px] rounded-full  border-3 border-white"
+                    className="block dark:hidden w-[120px] rounded-full  border-3 border-white bg-default-200"
                     style={{boxShadow: "0 0px 10px rgba(0, 0, 0, 0.2)"}}
                 />
                 <Image
-                    src="/me_dark.jpg"
+                    src="https://storage.googleapis.com/app_slavaveto/me_dark.png"
                     alt="Описание изображения"
                     width={120} // Пропорции, не конкретная ширина
                     height={120} // Пропорции, не конкретная высота
                     priority // Флаг для прелоадинга
-                    className="hidden dark:block w-[120px] rounded-full  border-0"
+                    className="hidden dark:block w-[120px] rounded-full  border-0 bg-default-300"
                     style={{boxShadow: "0 0px 10px rgba(0, 0, 0, 0.2)"}}
                 />
                 <div className="flex w-full justify-end -items-center -justify-center mt-[2px]">
