@@ -18,9 +18,21 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
     title: "В.Вето | Персональный сайт психолога",
-    description: "Психология, психотерапия, психологическое консультирование",
+    description: "Психологическое консультирование и психотерапия",
     icons: {
         icon: process.env.NODE_ENV === "development" ? "/favicon_local.png" : "/favicon.png",
+    },
+    openGraph: {
+        title: "В.Вето | Персональный сайт психолога",
+        description: "Психологическое консультирование и психотерапия",
+        images: [
+            {
+                url: "https://storage.googleapis.com/app_slavaveto/me.png",
+                width: 600, // Ширина изображения
+                height: 600, // Высота изображения
+                alt: " ",
+            },
+        ],
     },
 };
 
