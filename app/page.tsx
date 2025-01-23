@@ -24,6 +24,8 @@ import LocalText from "@/app/assets/localText";
 import {useTranslation} from 'react-i18next';
 import ProjBanner from "@/app/assets/projBanner";
 
+import VideoPlayer from '@/app/assets/videoPlayer';
+
 let isFirstLoad = true;
 
 export default function Home() {
@@ -111,6 +113,10 @@ export default function Home() {
                         <div className="flex flex-col gap-[20px] pt-0">
                             <Avatar/>
                             <Messengers/>
+
+                            {/*<VideoPlayer publicId="ogxqiqaojxas1rywby4y" />*/}
+
+                            {/*<VideoPlayer publicId="ogxqiqaojxas1rywby4y" posterTime={19} />*/}
 
                             {/*<YouTubeEmbed videoId="J5qxn8P6Hec" />*/}
 
