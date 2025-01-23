@@ -59,7 +59,7 @@ export default function DataLoader({ onLoadAction, isFirstLoad }: DataLoaderProp
                 );
 
             } catch (err) {
-                console.error('Ошибка загрузки страниц:', err);
+                // console.error('Ошибка загрузки страниц:', err);
 
                 // Сообщаем родительскому компоненту об ошибке
                 onLoadAction([], false);
