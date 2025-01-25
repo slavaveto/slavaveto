@@ -49,7 +49,7 @@ const CustomAlert: React.FC<CustomAlertProps> = ({
                     "border", // Добавляем общий бордер
                     "border-default-200 dark:border-[1px] dark:border-default ", // Ярче бордер в темном режиме
                     "border-l-0 dark:border-l-0",
-                    "py-[10px] px-[10px]",
+                    "pt-[6px] pb-[2px] px-[10px]",
                     "rounded-small"
                 ),
                 mainWrapper: "pt-[7px] text-medium pb-[8px] leading-[1.2] min-h-0",

@@ -23,7 +23,7 @@ a {
 }
 
 ul{
-  @apply pl-[14px]
+  @apply pl-[16px]
 }
 
 .chip {
