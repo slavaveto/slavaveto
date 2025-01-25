@@ -3,7 +3,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
-import {Spinner} from "@nextui-org/react";
+import {Spinner, Chip, Tabs, Tab, Card, CardBody} from "@nextui-org/react";
 import usePageTransition from "@/app/assets/usePageTransition";
 import LocalText from "@/app/assets/localText";
 import ContactForm from "@/app/components/ContactForm";
@@ -55,6 +55,8 @@ export default function Page({namespace}: { namespace: string }) {
                             <div>
                                 <LocalText text={"tab1_content"} ns={`${namespace}`}/>
                                 {/*<LoremText paragraphs={6}/>*/}
+
+
                             </div>
                         )}
 
@@ -73,7 +75,33 @@ export default function Page({namespace}: { namespace: string }) {
                         {activeTab === "payment" && (
                             <div>
                                 <LocalText text={"tab3_content"} ns={`${namespace}`}/>
-                                {/*<LoremText paragraphs={6}/>*/}
+<p>
+    Чтобы оплатить группу, пожалуйста, выберете, как вам удобней делать перевод, в евро или гривнах.
+
+</p>
+
+
+
+                                <Tabs aria-label="Options" fullWidth
+                                      className="m-0"
+                                      classNames={{
+                                          tabList: " ",
+                                          panel: "p-0 pt-[15px]"
+                                      }}>
+                                    <Tab key="euro" title="в евро" className={""}>
+
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+                                    </Tab>
+                                    <Tab key="grivni" title="в гривнах">
+
+                                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                                mollit anim id est laborum.
+
+                                    </Tab>
+                                </Tabs>
                             </div>
                         )}
 

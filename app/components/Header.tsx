@@ -77,7 +77,7 @@ export default function Header({width, namespace, activeTab, setActiveTab, onNav
                         onSelectionChange={(key) => setActiveTab(key as string)} // Изменяем активную вкладку
                         classNames={{
                             tabList: "flex w-full mb-[5px] px-0 gap-3 mx-0 p-0 pb-[1px] pt-0 justify-between ",
-                            tab: "w-full py-[20px] m-0 border-b border-divider pb-[25px] md:pb-[25px]",
+                            tab: "w-full py-[20px] m-0 border-b border-divider pb-[20px] md:pb-[20px]",
                             cursor: "w-full  bg-primary -mb-[2px] h-[2px]",
                         }}
                         style={{
