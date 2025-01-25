@@ -12,6 +12,7 @@ interface HeaderProps {
     onNavigateAction: (href: string) => void;
     activeTab?: string;
     setActiveTab?: (key: string) => void;
+    chipValue?: number | null; // Новый проп для значения Chip
 }
 
 export default function Header({
@@ -20,6 +21,7 @@ export default function Header({
                                    activeTab,
                                    setActiveTab,
                                    onNavigateAction,
+                                   chipValue, // Используем chipValue
                                }: HeaderProps) {
     const shouldRenderTabs = !activeTab || !setActiveTab;
     const [isScrolled, setIsScrolled] = useState(false);
@@ -58,28 +60,32 @@ export default function Header({
                     overflow: "hidden",
                 }}
             >
-                <div
-                    className="banner flex mx-auto px-3 flex-col"
-                    style={{ maxWidth: `${width}px` }}
-                >
-                    <div
-                        className={"w-full flex justify-end items-center  text-[14px] pt-[4px]"}
-                    >
-                        В группе осталось
-                        <Chip color="danger" size="sm" className="mx-3 px-4 text-[14px]"
+                {chipValue !== null && chipValue !== undefined && (
+                    <>
+                        <div
+                            className="banner flex mx-auto px-3 flex-col"
+                            style={{ maxWidth: `${width}px` }}
                         >
-                             4
-                        </Chip>
-                        свободных места!
-                    </div>
-                </div>
+                            <div
+                                className={"w-full flex justify-end items-center  text-[14px] pt-[4px]"}
+                            >
+                                В группе осталось
+                                <Chip color="danger" size="sm" className="mx-3 px-4 text-[14px]"
+                                >
+                                    4
+                                </Chip>
+                                свободных места!
+                            </div>
+                        </div>
+                    </>
+                )}
             </motion.div>
 
             <div
                 className="main_info container flex mx-auto px-3 flex-col"
                 style={{ maxWidth: `${width}px` }}
             >
-                <div className=" flex flex-row -md:hidden md:ml-[-43px] items-start">
+                <div className="page_title flex flex-row -md:hidden md:ml-[-43px] items-start">
                     <Link
                         href="/"
                         onClick={(e) => {

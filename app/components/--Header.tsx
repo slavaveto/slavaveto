@@ -24,12 +24,12 @@ export default function Header({
                                    chipValue, // Используем chipValue
                                }: HeaderProps) {
     const shouldRenderTabs = !activeTab || !setActiveTab;
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            setIsScrolled(scrollTop > 100); // Проверяем, превышает ли прокрутка 100px
+            setScrollPosition(scrollTop); // Сохраняем текущее значение прокрутки
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -39,11 +39,18 @@ export default function Header({
         };
     }, []);
 
+    // Рассчитываем значение смещения `y` для header
+    const calculateHeaderOffset = () => {
+        if (scrollPosition > 1600) return -128; // Смещение -128px после 600px прокрутки
+        if (scrollPosition > 100) return -28 - ((scrollPosition - 100) / 500) * (128 - 28); // Пропорциональное смещение
+        return 0; // Нет смещения, если прокрутка меньше 100px
+    };
+
     return (
         <motion.header
             className="-footer_bg -opacity-90 backdrop-blur-xl mb-[20px]"
             initial={{ y: 0 }}
-            animate={{ y: isScrolled ? -28 : 0 }} // Смещение вверх на 150px при прокрутке
+            animate={{ y: calculateHeaderOffset() }} // Смещение `y` в зависимости от прокрутки
             transition={{ duration: 0.5, ease: "easeInOut" }}
             style={{
                 position: "sticky",
@@ -54,30 +61,33 @@ export default function Header({
             <motion.div
                 className="banner"
                 initial={{ y: 0 }}
-                animate={{ y: isScrolled ? -100 : 0 }}
+                animate={{ y: scrollPosition > 100 ? -28 : 0 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 style={{
                     overflow: "hidden",
                 }}
             >
                 {chipValue !== null && chipValue !== undefined && (
-                    <>
-                <div
-                    className="banner flex mx-auto px-3 flex-col"
-                    style={{ maxWidth: `${width}px` }}
-                >
                     <div
-                        className={"w-full flex justify-end items-center  text-[14px] pt-[4px]"}
+                        className="banner flex mx-auto px-3 flex-col"
+                        style={{ maxWidth: `${width}px` }}
                     >
-                        В группе осталось
-                        <Chip color="danger" size="sm" className="mx-3 px-4 text-[14px]"
+                        <div
+                            className={
+                                "w-full flex justify-end items-center  text-[14px] pt-[4px]"
+                            }
                         >
-                             4
-                        </Chip>
-                        свободных места!
+                            В группе осталось
+                            <Chip
+                                color="danger"
+                                size="sm"
+                                className="mx-3 px-4 text-[14px]"
+                            >
+                                {chipValue}
+                            </Chip>
+                            свободных места!
+                        </div>
                     </div>
-                </div>
-                    </>
                 )}
             </motion.div>
 
@@ -94,7 +104,10 @@ export default function Header({
                         }}
                         className="flex items-center mr-[20px] text-default-500 --hover:text-primary-400 transition"
                     >
-                        <TbArrowBackUp size={26} className="ml-[-4px] mt-[24px] font-medium" />
+                        <TbArrowBackUp
+                            size={26}
+                            className="ml-[-4px] mt-[24px] font-medium"
+                        />
                     </Link>
 
                     <div className="text-2xl pt-[25px] pb-[20px] text-primary -font-semibold leading-[26px]">
@@ -109,7 +122,9 @@ export default function Header({
                         aria-label="Tabs variants"
                         variant="underlined"
                         selectedKey={activeTab}
-                        onSelectionChange={(key) => setActiveTab(key as string)}
+                        onSelectionChange={(key) =>
+                            setActiveTab(key as string)
+                        }
                         classNames={{
                             tabList:
                                 "flex w-full mb-[5px] px-0 gap-3 mx-0 p-0 pb-[1px] pt-0 justify-between ",
@@ -123,15 +138,30 @@ export default function Header({
                     >
                         <Tab
                             key="description"
-                            title={<LocalText text={"tab1_title"} ns={`${namespace}`} />}
+                            title={
+                                <LocalText
+                                    text={"tab1_title"}
+                                    ns={`${namespace}`}
+                                />
+                            }
                         />
                         <Tab
                             key="i_want"
-                            title={<LocalText text={"tab2_title"} ns={`${namespace}`} />}
+                            title={
+                                <LocalText
+                                    text={"tab2_title"}
+                                    ns={`${namespace}`}
+                                />
+                            }
                         />
                         <Tab
                             key="payment"
-                            title={<LocalText text={"tab3_title"} ns={`${namespace}`} />}
+                            title={
+                                <LocalText
+                                    text={"tab3_title"}
+                                    ns={`${namespace}`}
+                                />
+                            }
                         />
                     </Tabs>
                 )}

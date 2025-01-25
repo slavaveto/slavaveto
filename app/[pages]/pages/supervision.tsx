@@ -46,7 +46,7 @@ export default function Page({namespace}: { namespace: string }) {
 
                 <div className="flex flex-col min-h-svh">
                     <Header width="500" namespace={namespace} onNavigateAction={handleNavigation}
-                            activeTab={activeTab} setActiveTab={setActiveTab}/>
+                            activeTab={activeTab} setActiveTab={setActiveTab}  chipValue={4}/>
 
                     <main className="flex-grow container mx-auto px-3"
                           style={{maxWidth: '500px'}}>
@@ -63,8 +63,10 @@ export default function Page({namespace}: { namespace: string }) {
                             >
                             <div>
                                 <LocalText text={"tab1_content"} ns={`${namespace}`}/>
-                                {/*<LoremText paragraphs={6}/>*/}
 
+                                <div className={"mt-12"}>
+                                <LoremText paragraphs={6}/>
+                                </div>
 
                             </div>
                             </motion.div>

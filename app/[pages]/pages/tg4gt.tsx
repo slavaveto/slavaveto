@@ -47,7 +47,7 @@ export default function Page({namespace}: { namespace: string }) {
 
                 <div className="flex flex-col min-h-svh">
                     <Header width="500" namespace={namespace} onNavigateAction={handleNavigation}
-                            activeTab={activeTab} setActiveTab={setActiveTab}/>
+                            activeTab={activeTab} setActiveTab={setActiveTab} chipValue={6}/>
 
                     <main className="flex-grow container mx-auto px-3"
                           style={{maxWidth: '500px'}}>
@@ -62,15 +62,20 @@ export default function Page({namespace}: { namespace: string }) {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.2 }}
                             >
-                            <div>
-                                <LocalText text={"tab1_content"} ns={`${namespace}`}/>
-                                {/*<LoremText paragraphs={6}/>*/}
-                            </div>
+                                <div>
+                                    <LocalText text={"tab1_content"} ns={`${namespace}`}/>
+
+                                    <div className={"mt-12"}>
+                                        <LoremText paragraphs={6}/>
+                                    </div>
+
+
+                                </div>
                             </motion.div>
                         )}
 
-                        {activeTab === "i_want" && (
-                            <motion.div
+                            {activeTab === "i_want" && (
+                                <motion.div
                                 key="i_want" // Уникальный ключ
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
