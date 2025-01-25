@@ -11,6 +11,7 @@ import LoremText from "@/app/assets/loremText";
 import { motion, AnimatePresence } from "framer-motion";
 import CustomAlert from "@/app/components/CustomAlert";
 
+
 let isFirstLoad = true;
 
 export default function Page({namespace}: { namespace: string }) {
