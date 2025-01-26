@@ -119,13 +119,6 @@ export default function Page({namespace}: { namespace: string }) {
 
                                 </CustomAlert>
 
-
-
-
-
-
-
-
                                 <Tabs
                                     aria-label="Options"
                                     fullWidth
@@ -133,6 +126,13 @@ export default function Page({namespace}: { namespace: string }) {
                                     classNames={{
                                         tabList: "mt-[20px] mb-[11px] ",
                                         panel: "p-0 pt-[15px] ",
+                                    }}
+                                    onSelectionChange={() => {
+                                        // Сбрасываем скролл на верх страницы
+                                        window.scrollTo({
+                                            top: 0,
+                                            behavior: "smooth", // Плавный скролл
+                                        });
                                     }}
                                 >
                                     <Tab
