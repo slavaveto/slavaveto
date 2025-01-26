@@ -31,8 +31,8 @@ export default function LangToggle() {
             selectedKey={i18n.language} // Устанавливаем текущий язык
             onSelectionChange={(key) => handleLanguageChange(key as string)} // Обработчик смены языка
             classNames={{
-                tabList: "gap-[0px] sm:gap-[0px] p-[0px] ",
-                tab: "h-[34px] md:h-[30px] px-[10px] md:px-[8px]",
+                tabList: "gap-[0px] sm:gap-[0px] p-[0px] rounded-small",
+                tab: "h-[34px] md:h-[30px] px-[10px] md:px-[8px] ",
                 tabContent: " group-data-[selected=true]:text-primary-400",
             }}
 
