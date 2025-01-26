@@ -192,8 +192,9 @@ export default function Header({
                         classNames={{
                             tabList:
                                 "flex w-full mb-[5px] px-0 gap-3 mx-0 p-0 pb-[1px] pt-0 justify-between h-[45px] ",
-                            tab: "w-full py-[20px] m-0 border-b border-divider pb-[20px] md:pb-[20px] font-medium",
+                            tab: "w-full py-[20px] m-0 border-b border-divider pb-[20px] md:pb-[20px] ",
                             cursor: "w-full  bg-primary -mb-[2px] h-[2px]",
+                            tabContent: "group-data-[selected=true]:font-medium",
                         }}
                         style={{
                             position: "sticky",
