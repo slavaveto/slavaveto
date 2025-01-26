@@ -80,7 +80,7 @@ export default function Header({
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            setIsScrolled(scrollTop > 200); // Проверяем, превышает ли прокрутка 100px
+            setIsScrolled(scrollTop > 300); // Проверяем, превышает ли прокрутка 100px
         };
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -192,7 +192,7 @@ export default function Header({
                         classNames={{
                             tabList:
                                 "flex w-full mb-[5px] px-0 gap-3 mx-0 p-0 pb-[1px] pt-0 justify-between h-[45px] ",
-                            tab: "w-full py-[20px] m-0 border-b border-divider pb-[20px] md:pb-[20px]",
+                            tab: "w-full py-[20px] m-0 border-b border-divider pb-[20px] md:pb-[20px] font-medium",
                             cursor: "w-full  bg-primary -mb-[2px] h-[2px]",
                         }}
                         style={{
