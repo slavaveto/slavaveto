@@ -69,6 +69,16 @@ const initI18n = async () => {
             interpolation: {
                 escapeValue: false,
             },
+            // detection: {
+            //     // Отключаем автоматическую реакцию на изменения языка
+            //     order: ['path', 'cookie', 'localStorage', 'navigator'],
+            //     caches: ['cookie'],
+            // },
+            // react: {
+            //     useSuspense: false, // Убедитесь, что Suspense отключён для предотвращения задержек
+            //     bindI18n: 'languageChanged loaded', // Реагируем только на конкретные события
+            //     bindI18nStore: false, // Отключаем автоматическое обновление
+            // },
         });
     // Выводим ресурсы в консоль
     //console.log("i18n Resources:", resources);
