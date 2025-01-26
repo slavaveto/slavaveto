@@ -41,7 +41,7 @@ export default function Page({namespace}: { namespace: string }) {
                 <div className="flex flex-col min-h-svh">
                     <Header width="500" namespace={namespace} onNavigateAction={handleNavigation}/>
 
-                    <main className="flex-grow container mx-auto px-3 pt-[20px]"
+                    <main className="flex-grow container mx-auto px-3 pt-[10px]"
                           style={{maxWidth: '500px'}}>
 
                         <ContactForm

@@ -80,7 +80,7 @@ export default function Header({
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            setIsScrolled(scrollTop > 100); // Проверяем, превышает ли прокрутка 100px
+            setIsScrolled(scrollTop > 200); // Проверяем, превышает ли прокрутка 100px
         };
         window.addEventListener("scroll", handleScroll);
         return () => {
