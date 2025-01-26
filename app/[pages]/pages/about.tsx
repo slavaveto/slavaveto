@@ -45,7 +45,7 @@ export default function Page({namespace}: { namespace: string }) {
 
                         <LocalText text={"content"} ns={`${namespace}`}/>
 
-                        <LoremText paragraphs={6}/>
+                        {/*<LoremText paragraphs={6}/>*/}
 
                     </main>
                     <Footer width="500"/>
