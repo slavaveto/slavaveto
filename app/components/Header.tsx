@@ -194,7 +194,7 @@ export default function Header({
 
                             // Сбрасываем скролл на уровень окна
                             window.scrollTo({
-                                top: 100,
+                                top: 0,
                                 behavior: "smooth", // Быстрый скролл для предотвращения появления адресной строки
                             });
 
