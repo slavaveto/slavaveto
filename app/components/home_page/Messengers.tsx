@@ -10,7 +10,7 @@ export default function Messengers() {
             <div className="flex justify-center space-x-5 pt-3 pb-5">
                 {/* Telegram */}
                 <a
-                    href="https://t.me/@slavaveto"
+                    href="https://t.me/+59896112322"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 rounded-full w-11 h-11 sm:w-10 sm:h-10 bg-default-200 text-default-500 sm:hover:bg-primary-300 sm:hover:text-white transition flex items-center justify-center align-middle
