@@ -48,7 +48,7 @@ export default function Page({namespace}: { namespace: string }) {
                     <Header width="500" namespace={namespace} onNavigateAction={handleNavigation}
                             activeTab={activeTab} setActiveTab={setActiveTab}  chipValue={4}/>
 
-                    <main className="flex-grow container mx-auto px-3"
+                    <main className="flex-grow container mx-auto px-3 pt-[20px]"
                           style={{maxWidth: '500px'}}>
 
                         <AnimatePresence mode="wait">

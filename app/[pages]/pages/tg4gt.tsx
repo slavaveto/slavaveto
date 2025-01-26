@@ -24,6 +24,7 @@ export default function Page({namespace}: { namespace: string }) {
     const isMessageRequired = false;
     const [activeTab, setActiveTab] = useState("description"); // Начальная вкладка
 
+    const [headerHeight, setHeaderHeight] = useState(120); // Высота header по умолчанию
 
     const {
         isInternalTransition, hasCheckedTransition, animationReady, isExiting, showSpinner, handleNavigation
@@ -47,10 +48,12 @@ export default function Page({namespace}: { namespace: string }) {
 
                 <div className="flex flex-col min-h-svh">
                     <Header width="500" namespace={namespace} onNavigateAction={handleNavigation}
-                            activeTab={activeTab} setActiveTab={setActiveTab} chipValue={6}/>
+                            activeTab={activeTab} setActiveTab={setActiveTab} chipValue={6}
+                    />
 
-                    <main className="flex-grow container mx-auto px-3"
-                          style={{maxWidth: '500px'}}>
+                    <main className="flex-grow container mx-auto px-3 pt-[20px] "
+                          style={{maxWidth: '500px',
+                    }}>
 
                         <AnimatePresence mode="wait">
 

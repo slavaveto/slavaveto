@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { TbArrowBackUp } from "react-icons/tb";
 import LocalText from "@/app/assets/localText";
@@ -24,63 +24,85 @@ export default function Header({
                                    chipValue, // Используем chipValue
                                }: HeaderProps) {
     const shouldRenderTabs = !activeTab || !setActiveTab;
+
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false); // Отслеживает анимацию
+    const [isBannerHiddenForever, setIsBannerHiddenForever] = useState(false); // Отслеживает состояние скрытия баннера
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
             setIsScrolled(scrollTop > 100); // Проверяем, превышает ли прокрутка 100px
         };
-
         window.addEventListener("scroll", handleScroll);
-
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
+    // Завершение анимации баннера
+    const handleBannerAnimationComplete = () => {
+        if (!isBannerHiddenForever && isScrolled) {
+            setIsBannerHiddenForever(true); // Баннер скрыт навсегда
+        }
+        setIsAnimating(false); // Анимация завершена
+    };
+
     return (
         <motion.header
-            className="-footer_bg -opacity-90 backdrop-blur-xl mb-[20px]"
-            initial={{ y: 0 }}
-            animate={{ y: isScrolled ? -28 : 0 }} // Смещение вверх на 150px при прокрутке
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="footer_bg -opacity-90 backdrop-blur-xl h-[174px]"
+            initial={{y: 0, height: 174}} // Начальное положение и высота
+            animate={{
+                y: isScrolled ? -0 : 0, // Смещение вверх при прокрутке
+                height: isBannerHiddenForever ? 150 : isScrolled ? 150 : 174, // Фиксация высоты
+            }}
+            transition={{
+                duration: 0.5, // Длительность анимации
+                ease: "easeInOut", // Плавное начало и конец анимации
+            }}
+
+
             style={{
                 position: "sticky",
                 top: 0,
                 zIndex: 50,
             }}
         >
+            {!isBannerHiddenForever && (
             <motion.div
                 className="banner"
-                initial={{ y: 0 }}
-                animate={{ y: isScrolled ? -100 : 0 }}
+                initial={{ y: 0, height: 24 }}
+                animate={{ y: isScrolled ? -100 : 0,
+                    height: isScrolled ? 0 : 24,
+                }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
+                onAnimationStart={() => setIsAnimating(true)} // Анимация началась
+                onAnimationComplete={handleBannerAnimationComplete} // Завершение анимации
                 style={{
                     overflow: "hidden",
                 }}
             >
                 {chipValue !== null && chipValue !== undefined && (
                     <>
-                <div
-                    className="banner flex mx-auto px-3 flex-col"
-                    style={{ maxWidth: `${width}px` }}
-                >
-                    <div
-                        className={"w-full flex justify-end items-center  text-[14px] pt-[4px]"}
-                    >
-                        В группе осталось
-                        <Chip color="danger" size="sm" className="mx-3 px-4 text-[14px]"
+                        <div
+                            className="banner flex mx-auto px-3 flex-col"
+                            style={{ maxWidth: `${width}px` }}
                         >
-                             4
-                        </Chip>
-                        свободных места!
-                    </div>
-                </div>
+                            <div
+                                className={"w-full flex justify-end items-center  text-[14px] pt-[4px]"}
+                            >
+                                В группе осталось
+                                <span  className="chip mx-[8px] px-[10px] pt-[2px] pb-[0px] text-[14px] "
+                                >
+                                    {chipValue}
+                                </span>
+                                свободных места!
+                            </div>
+                        </div>
                     </>
                 )}
             </motion.div>
-
+            )}
             <div
                 className="main_info container flex mx-auto px-3 flex-col"
                 style={{ maxWidth: `${width}px` }}

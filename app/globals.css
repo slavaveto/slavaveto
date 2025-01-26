@@ -29,9 +29,10 @@ ul{
 .chip {
   display: inline-block;
   color: white;
-  padding: 3px 8px 2px;
   border-radius: 16px;
-  margin: 0 4px;
+  /*margin: 0 4px;*/
+  @apply bg-danger-500;
+  height: 20px
 }
 .chip.primary {
   @apply bg-primary-500
