@@ -127,13 +127,6 @@ export default function Page({namespace}: { namespace: string }) {
                                         tabList: "mt-[20px] mb-[11px] ",
                                         panel: "p-0 pt-[15px] ",
                                     }}
-                                    onSelectionChange={() => {
-                                        // Сбрасываем скролл на верх страницы
-                                        window.scrollTo({
-                                            top: 0,
-                                            behavior: "smooth", // Плавный скролл
-                                        });
-                                    }}
                                 >
                                     <Tab
                                         key="in_euro"

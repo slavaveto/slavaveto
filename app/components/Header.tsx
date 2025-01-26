@@ -100,7 +100,7 @@ export default function Header({
         <>
 
         <motion.header
-            className="-footer_bg -opacity-90 backdrop-blur-xl "
+            className="sticky_header -footer_bg -opacity-90 backdrop-blur-xl "
             initial={{ y: 0, height: elementHeight ? elementHeight + addHeight : defaultHeight }}
             animate={{
                 y: isScrolled ? -0 : 0, // Смещение вверх при прокрутке
@@ -126,7 +126,7 @@ export default function Header({
         >
             {!isBannerHiddenForever && !shouldRenderTabs && (
                 <motion.div
-                    className="banner "
+                    className="banner"
                     initial={{ y: 0, height: 30 }}
                     animate={{ y: isScrolled ? -100 : 0,
                         height: isScrolled ? 0 : 30,
@@ -188,7 +188,25 @@ export default function Header({
                         aria-label="Tabs variants"
                         variant="underlined"
                         selectedKey={activeTab}
-                        onSelectionChange={(key) => setActiveTab?.(key as string)}
+                        onSelectionChange={(key) => {
+                            // Устанавливаем активную вкладку
+                            setActiveTab?.(key as string);
+
+                            // Сбрасываем скролл на уровень окна
+                            window.scrollTo({
+                                top: 100,
+                                behavior: "smooth", // Быстрый скролл для предотвращения появления адресной строки
+                            });
+
+                            // // Если нужно сбрасывать только в контейнере:
+                            // const container = document.querySelector(".sticky_header");
+                            // if (container) {
+                            //     container.scrollTo({
+                            //         top: 0,
+                            //         behavior: "smooth", // Плавный скролл для контейнера
+                            //     });
+                            // }
+                        }}
                         classNames={{
                             tabList:
                                 "flex w-full mb-[5px] px-0 gap-3 mx-0 p-0 pb-[1px] pt-0 justify-between h-[45px] ",
