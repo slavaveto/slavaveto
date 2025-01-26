@@ -52,7 +52,7 @@ ul{
   justify-content: center;
   align-items: center;
   height: 100vh; /* Эквивалент `h-screen` */
-  transform: translateY(-5vh); /* Эквивалент `translate-y-[-5vh]` */
+  transform: translateY(-10vh); /* Эквивалент `translate-y-[-5vh]` */
 }
 @media (min-width: 640px) { /* Эквивалент sm: */
   .spinner {
