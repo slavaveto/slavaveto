@@ -6,6 +6,7 @@ import Footer from "@/app/components/Footer";
 import {Spinner} from "@nextui-org/react";
 import usePageTransition from "@/app/assets/usePageTransition";
 import LocalText from "@/app/assets/localText";
+import LoremText from "@/app/assets/loremText";
 
 let isFirstLoad = true;
 
@@ -39,10 +40,12 @@ export default function Page({namespace}: { namespace: string }) {
                 <div className="flex flex-col min-h-svh">
                     <Header width="500" namespace={namespace} onNavigateAction={handleNavigation}/>
 
-                    <main className="flex-grow container mx-auto px-3"
+                    <main className="flex-grow container mx-auto px-3 pt-[20px]"
                           style={{maxWidth: '500px'}}>
 
                         <LocalText text={"content"} ns={`${namespace}`}/>
+
+                        <LoremText paragraphs={6}/>
 
                     </main>
                     <Footer width="500"/>

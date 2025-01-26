@@ -293,7 +293,7 @@ export default function ContactForm({
                                     description="">
 
                                     <div className="text-foreground p-0">
-                                        <LocalText text={"form_before"} ns={`${namespace}`}/>
+                                        <LocalText text={"form_before"} ns={`projs`}/>
                                     </div>
 
                                 </CustomAlert>
@@ -446,7 +446,7 @@ export default function ContactForm({
                                     <CustomAlert
                                         color="success"
                                         showIcon={true}
-                                        title={<LocalText text={"form_after_title"} ns={`${namespace}`}/>}
+                                        title={<LocalText text={"form_after_title"} ns={`projs`}/>}
                                         description=""
                                     >
                                         <div className="text-foreground">

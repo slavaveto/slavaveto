@@ -25,7 +25,7 @@ const defaultLanguage =
 // Функция для загрузки переводов из базы данных
 const loadTranslationsFromDatabase = async () => {
     const tables = ['home', 'misc', 'about', 'request', 'message',
-        'tg4gt', 'supervision', 'support_ua' , 'error']; // Таблицы с переводами
+        'tg4gt', 'supervision', 'support_ua' , 'error', 'projs']; // Таблицы с переводами
     const translations: any = {};
 
     try {

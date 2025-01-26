@@ -31,8 +31,8 @@ ul{
   color: white;
   border-radius: 16px;
   /*margin: 0 4px;*/
-  @apply bg-danger-500;
-  height: 20px
+  @apply bg-danger-500 font-medium;
+  height: 20px;
 }
 .chip.primary {
   @apply bg-primary-500

@@ -16,6 +16,12 @@ let isFirstLoad = true;
 
 export default function Page({namespace}: { namespace: string }) {
 
+    const page_type = "proj"
+    const mest_left = 6;
+    const title_lines = 2
+
+
+
     // Прокрутка страницы вверх при каждой загрузке
     useEffect(() => {
         window.scrollTo(0, 0); // Прокрутка страницы вверх
@@ -48,7 +54,8 @@ export default function Page({namespace}: { namespace: string }) {
 
                 <div className="flex flex-col min-h-svh">
                     <Header width="500" namespace={namespace} onNavigateAction={handleNavigation}
-                            activeTab={activeTab} setActiveTab={setActiveTab} chipValue={6}
+                            activeTab={activeTab} setActiveTab={setActiveTab}
+                            mestLeft={mest_left} pageType = {page_type} titleLines={title_lines}
                     />
 
                     <main className="flex-grow container mx-auto px-3 pt-[20px] "
@@ -136,7 +143,7 @@ export default function Page({namespace}: { namespace: string }) {
                                         >
                                             <Tab
                                                 key="in_euro"
-                                                title={<LocalText text="tab_in_euro" ns={`${namespace}`} />}
+                                                title={<LocalText text="tab_in_euro" ns={`projs`} />}
                                             >
                                                 <motion.div
                                                     key="in_euro"
@@ -145,12 +152,12 @@ export default function Page({namespace}: { namespace: string }) {
                                                     exit={{ opacity: 0 }}
                                                     transition={{ duration: 0.3 }}
                                                 >
-                                                    <LocalText text="tab_in_euro_text" ns={`${namespace}`} />
+                                                    <LocalText text="tab_in_euro_text" ns={`projs`} />
                                                 </motion.div>
                                             </Tab>
                                             <Tab
                                                 key="in_grivni"
-                                                title={<LocalText text="tab_in_grivni" ns={`${namespace}`} />}
+                                                title={<LocalText text="tab_in_grivni" ns={`projs`} />}
                                             >
                                                 <motion.div
                                                     key="in_grivni"
